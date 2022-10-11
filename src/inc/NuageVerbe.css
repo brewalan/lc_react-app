@@ -1,0 +1,35 @@
+.NuageVerbe {
+    text-align: center;
+  }
+
+.t6 {
+    font-size:x-small;
+}
+.t5 {
+    font-size:small;
+}
+.t4 {
+    font-size:medium
+}
+.t3 {
+    font-size:large;
+}
+.t2 {
+    font-size:x-large;
+}
+.t1 {
+    font-size:xx-large;
+}
+button {
+    background-color: white;
+    border: none;
+    color: royalblue;
+    text-align: center;
+    text-decoration: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+
+
+  

@@ -1,0 +1,11 @@
+.conjug {
+    border-color: #ccc;
+    background: #fff;
+    border-width: 2px;
+    border-style: solid;
+    margin-bottom: 5px;
+    color: #333;
+    height: 1.9em;
+    font-size: 1.8em;
+    font-weight: 700;
+}
