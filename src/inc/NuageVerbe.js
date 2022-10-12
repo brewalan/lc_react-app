@@ -3,7 +3,6 @@ import './NuageVerbe.css'
 
 
 
-
  
 
 class NuageVerbe extends React.Component {
@@ -145,7 +144,7 @@ class NuageVerbe extends React.Component {
       <VerbeDuNuage key={element.verbe} verbe={element.verbe} taille={element.taille} separateur={element.separateur} />
     );
     return (
-      <div className="NuageVerbe">
+      <div className="text-center pb-2">
         {listVerbe}
       </div>
     );
@@ -155,7 +154,12 @@ class NuageVerbe extends React.Component {
 class VerbeDuNuage extends React.Component {
   render() {
     return (
-      <span><button className={this.props.taille}>{this.props.verbe}</button>{this.props.separateur}</span>
+      <span>
+        <button className={this.props.taille} 
+          onClick={() => console.log('{this.props.verbe}')}>
+          {this.props.verbe}
+        </button>{this.props.separateur}
+      </span>
     );
   }
 }

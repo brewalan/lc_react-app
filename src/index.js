@@ -7,14 +7,15 @@ import reportWebVitals from './reportWebVitals';
 
 
 
+const verbeInput = ReactDOM.createRoot(document.getElementById('verbeInput'));
 const nuageVerbe = ReactDOM.createRoot(document.getElementById('nuageVerbe'));
+
 nuageVerbe.render(
   <React.StrictMode>
     <NuageVerbe />
   </React.StrictMode>
 );
 
-const verbeInput = ReactDOM.createRoot(document.getElementById('verbeInput'));
 verbeInput.render(
   <React.StrictMode>
     <VerbeInput />

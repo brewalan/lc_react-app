@@ -31,199 +31,184 @@ class VerbeInput extends React.Component {
 
       handleChange(event) {
         this.setState({value: event.target.value});
+        console.log("handleChange "+ event.target.value);
       }
     
       handleSubmit(event) {
-        const vb = this.state.value;
-
-
-            this.setState({
-                loading: true
-            }, () => {
-                const urlVb='https://leconjugueur.lefigaro.fr/php5/api.php?v='+vb
-                fetch(urlVb)
-                .then(results => results.json())
-                .then(info => {
-                    /*const results = info.data.map(x => {
-                      return {
-                        caracteritique: x.caracteristiques,
-                        verbe: x.verbe,
-                        conjugaison: x.conjugaison,
-                        parametre: x.parametre,
-                        similaire: x.similaire
-                      }
-                    })*/
-                    this.setState(info);
-                    this.verbeConjugaison.render(
-                      <React.StrictMode>
-                        <div className='container'>
-                          {/* Indicatif */}
-                          <h2 className='bg-primary text-white p-2'>{getTemps(MODE_INDICATIF,DETAIL_MODE)}</h2>
-                          <div className='row'>
-                            <div className='col'>
-                              <h4>{getTemps(IND_P,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.IND_P,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(IND_PC,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.IND_PC,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(IND_I,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.IND_I,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(IND_PQP,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.IND_PQP,'<b></b><br>'))}</p>
-                            </div>
-                          </div>
-                          <div className='row'>
-                            <div className='col'>
-                              <h4>{getTemps(IND_PS,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.IND_PS,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(IND_PA,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.IND_PA,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(IND_FS,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.IND_FS,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(IND_FA,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.IND_FA,'<b></b><br>'))}</p>
-                            </div>
-                          </div>  
-                          {/* Subjonctif */}
-                          <h2 className='bg-primary text-white p-2'>{getTemps(MODE_SUBJONCTIF,DETAIL_MODE)}</h2>
-                          <div className='row'>
-                            <div className='col'>
-                              <h4>{getTemps(SUBJ_P,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.SUBJ_P,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(SUBJ_PC,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.SUBJ_PC,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(SUBJ_I,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.SUBJ_I,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(SUBJ_PQP,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.SUBJ_PQP,'<b></b><br>'))}</p>
-                            </div>
-                          </div>   
-                          {/* Conditionnel */}
-                          <h2 className='bg-primary text-white p-2'>{getTemps(MODE_CONDITIONNEL,DETAIL_MODE)}</h2>
-                          <div className='row'>
-                            <div className='col'>
-                              <h4>{getTemps(COND_P,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.COND_P,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(COND_PC,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.COND_PC,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(COND_P2,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.COND_P2,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(AUCUN,DETAIL_TEMPS)}</h4>
-                              <p>&nbsp;</p>
-                            </div>
-                          </div>      
-                          {/* Impératif & participe */}
-                          <div className='row'>
-                            <div className='col-6'>
-                              <h2 className='bg-primary text-white p-2'>{getTemps(MODE_IMPERATIF,DETAIL_MODE)}</h2>
-                            </div>
-                            <div className='col-6'>
-                              <h2 className='bg-primary text-white p-2'>{getTemps(MODE_PARTICIPE,DETAIL_MODE)}</h2>
-                            </div>
-                          </div>
-                          <div className='row'>
-                            <div className='col'>
-                              <h4>{getTemps(IMP_P,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.IMP_P,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(IMP_PC,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.IMP_PC,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(PART_PR,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.PART_PR,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(PART_ALL,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.PART_ALL,'<b></b><br>'))}</p>
-                            </div>
-                          </div>                                                                                                
-                          {/* Infinitif */}
-                          <h2 className='bg-primary text-white p-2'>{getTemps(MODE_INFINITIF,DETAIL_MODE)}</h2>
-                          <div className='row'>
-                            <div className='col'>
-                              <h4>{getTemps(INF_P,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.INF_P,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(INF_PP,DETAIL_TEMPS)}</h4>
-                              <p>{Parser(stripTags(info.conjugaison.INF_PP,'<b></b><br>'))}</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(AUCUN,DETAIL_TEMPS)}</h4>
-                              <p>&nbsp;</p>
-                            </div>
-                            <div className='col'>
-                              <h4>{getTemps(AUCUN,DETAIL_TEMPS)}</h4>
-                              <p>&nbsp;</p>
-                            </div>
-                          </div>                            
-                        </div>
-                      </React.StrictMode>
-                    );
-
-                  })
-                //.then(console.log(this.state.verbe))
-                  .catch(console.log);  
-                
-            });
-
-
-     /*   fetch.getJSON('https://leconjugueur.lefigaro.fr/php5/api.php?v='+vb)
-        .then(({ results }) => console.log(JSON.stringify(results)));*/
-        //this.setState({ person: results }));
-
-
-        //alert('A name was submitted: ' + this.state.value);
+        //ending managing the event
         event.preventDefault();
+        const vb = this.state.value;
+        this.loadVerbe(vb);        
+      }
+
+      handleClick(e,vb) {
+        e.preventDefault();
+        console.log('this is:'+vb, this);
+        this.loadVerbe(vb);
+      };   
+
+      /* start to load a new verb and update the screen */
+      loadVerbe(vb) {
+        if (vb==="") return;
+        this.setState({
+            loading: true
+        }, () => {
+            const urlVb='https://leconjugueur.lefigaro.fr/php5/api.php?v='+vb
+            fetch(urlVb)
+            .then(results => results.json())
+            .then(info => {
+                this.setState(info);
+                /* check if verbe exists */
+                if (info.caracteristique.existe) {
+                  this.updateConjugueVerbe(info);
+                } else {
+                  this.displayPropose(info);
+                }
+              })
+            .catch(console.log);                
+        });
       }
 
       componentDidMount(){
         this.inputVerbe.focus();
-      }      
-        
+      }  
+     
+
+      /* display verb proposal */
+      displayPropose(info) {
+        this.verbeConjugaison.render( 
+          <React.StrictMode>
+            <div className='alert alert-warning' role='alert'>
+              <h3>Le verbe {info.parametre.originalVerbe} n'a pas été trouvé.</h3>
+              <p>Voici une proposition de verbes :</p>
+              <ul>
+                <li><button className='bg-alert-warning' onClick={(e)=>this.handleClick(e,'aimer')}>aimer</button></li>
+                <li><button onClick={(e)=>this.handleClick(e,'regarder')}>regarder</button></li>
+              </ul>
+            </div>
+          </React.StrictMode>
+        );
+      }
+
+      /* display temps + conjugaison */
+      renderConjugaisonBox(temps,conjugaison) {
+        return <ConjugaisonBox temps={temps} conjugaison={conjugaison} />
+      }
+      renderModeBox(mode) {
+        return <ModeBox mode={mode} />
+      }
+
+      /* mise à jour de la conjugaison du verbe */
+      updateConjugueVerbe(info) {
+        this.verbeConjugaison.render(
+          <React.StrictMode>
+              <h1 className='text-center bg-primary text-white py-3'>Conjugaison du verbe {info.verbe}</h1>
+              {/* Indicatif */}
+              {this.renderModeBox(getTemps(MODE_INDICATIF,DETAIL_MODE),info.conjugaison.IND_P)}
+              <div className='row'>
+                {this.renderConjugaisonBox(getTemps(IND_P,DETAIL_TEMPS),info.conjugaison.IND_P)}
+                {this.renderConjugaisonBox(getTemps(IND_PC,DETAIL_TEMPS),info.conjugaison.IND_PC)}
+                {this.renderConjugaisonBox(getTemps(IND_I,DETAIL_TEMPS),info.conjugaison.IND_I)}
+                {this.renderConjugaisonBox(getTemps(IND_PQP,DETAIL_TEMPS),info.conjugaison.IND_PQP)}
+              </div>
+              <div className='row'>
+                {this.renderConjugaisonBox(getTemps(IND_PS,DETAIL_TEMPS),info.conjugaison.IND_PS)}
+                {this.renderConjugaisonBox(getTemps(IND_PA,DETAIL_TEMPS),info.conjugaison.IND_PA)}
+                {this.renderConjugaisonBox(getTemps(IND_FS,DETAIL_TEMPS),info.conjugaison.IND_FS)}
+                {this.renderConjugaisonBox(getTemps(IND_FA,DETAIL_TEMPS),info.conjugaison.IND_FA)}
+              </div>
+  
+              {/* Subjonctif */}
+              {this.renderModeBox(getTemps(MODE_SUBJONCTIF,DETAIL_MODE),info.conjugaison.IND_P)}
+              <div className='row'>
+                {this.renderConjugaisonBox(getTemps(SUBJ_P,DETAIL_TEMPS),info.conjugaison.SUBJ_P)}
+                {this.renderConjugaisonBox(getTemps(SUBJ_PC,DETAIL_TEMPS),info.conjugaison.SUBJ_PC)}
+                {this.renderConjugaisonBox(getTemps(SUBJ_I,DETAIL_TEMPS),info.conjugaison.SUBJ_I)}
+                {this.renderConjugaisonBox(getTemps(SUBJ_PQP,DETAIL_TEMPS),info.conjugaison.SUBJ_PQP)}
+              </div>   
+              {/* Conditionnel */}
+              {this.renderModeBox(getTemps(MODE_CONDITIONNEL,DETAIL_MODE),info.conjugaison.IND_P)}
+              <div className='row'>
+                {this.renderConjugaisonBox(getTemps(COND_P,DETAIL_TEMPS),info.conjugaison.COND_P)}
+                {this.renderConjugaisonBox(getTemps(COND_PC,DETAIL_TEMPS),info.conjugaison.COND_PC)}
+                {this.renderConjugaisonBox(getTemps(COND_P2,DETAIL_TEMPS),info.conjugaison.COND_P2)}
+                {this.renderConjugaisonBox(getTemps(AUCUN,DETAIL_TEMPS),"&nbsp;")}
+              </div>      
+              {/* Impératif & participe */}
+              <div className='row'>
+                <div className='col-6'>
+                  {this.renderModeBox(getTemps(MODE_IMPERATIF,DETAIL_MODE),info.conjugaison.IND_P)}
+                </div>
+                <div className='col-6'>
+                  {this.renderModeBox(getTemps(MODE_PARTICIPE,DETAIL_MODE),info.conjugaison.IND_P)}
+                </div>
+              </div>
+              <div className='row'>
+                {this.renderConjugaisonBox(getTemps(IMP_P,DETAIL_TEMPS),info.conjugaison.IMP_P)}
+                {this.renderConjugaisonBox(getTemps(IMP_PC,DETAIL_TEMPS),info.conjugaison.IMP_PC)}
+                {this.renderConjugaisonBox(getTemps(PART_PR,DETAIL_TEMPS),info.conjugaison.PART_PR)}
+                {this.renderConjugaisonBox(getTemps(PART_ALL,DETAIL_TEMPS),info.conjugaison.PART_ALL)}
+              </div>                                                                                                
+              {/* Infinitif */}
+              {this.renderModeBox(getTemps(MODE_INFINITIF,DETAIL_MODE),info.conjugaison.IND_P)}
+              <div className='row'>
+                {this.renderConjugaisonBox(getTemps(INF_P,DETAIL_TEMPS),info.conjugaison.INF_P)}
+                {this.renderConjugaisonBox(getTemps(INF_PP,DETAIL_TEMPS),info.conjugaison.INF_PP)}
+                {this.renderConjugaisonBox(getTemps(AUCUN,DETAIL_TEMPS),"&nbsp;")}
+                {this.renderConjugaisonBox(getTemps(AUCUN,DETAIL_TEMPS),"&nbsp;")}
+              </div>                            
+          </React.StrictMode>
+        );
+      }
+      
+      /* display text input bar for conjugaison */
       render() {
         return (
             <form onSubmit={this.handleSubmit}>
             <label>
-                <i className="fa-duotone fa-magnifying-glass fa-2x"></i>
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="basic-addon1">
+                  <i className="fa-duotone fa-magnifying-glass fa-2x"></i>
+                </span>              
                 <input ref={(input) => { this.inputVerbe = input; }} 
                   autoFocus 
                   name='inputVerbe' 
                   className="conjug" 
-                  type="text" 
+                  type="text"
+                  placeholder="Verbe à conjuguer" 
                   value={this.state.value} 
                   onChange={this.handleChange} />
+                  <input className='btn btn-outline-secondary' type="submit" value="Conjuguer" />
+                </div>
             </label>
-            <input type="submit" value="Conjuguer" />
           </form>
         );
       }
 }
+
+/* update the conjugaison with the tense box */
+class ConjugaisonBox extends React.Component {
+  render() {
+    return (
+      <div className='col-md-3 col-sm-6'>
+        <h5>{this.props.temps}</h5>
+        <p>{Parser(stripTags(this.props.conjugaison,'<b></b><br>'))}</p>
+      </div>
+    );
+  }
+}
+/* display a mode */
+class ModeBox extends React.Component {
+  render() {
+    return (
+      <h2 className='bg-primary text-white p-2'>{this.props.mode}</h2>
+    );
+  }
+}
+
+
+
+
 
 
 export default VerbeInput;
