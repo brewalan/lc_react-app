@@ -1,21 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Parser from 'html-react-parser'
 import './VerbeInput.css'
-import {getTemps, IND_P, IND_PC, IND_I, IND_PQP, IND_FS, IND_FA, IND_PS, IND_PA, DETAIL_TEMPS} from './ConjConstante.js'
-import {AUCUN, SUBJ_P,SUBJ_PC,SUBJ_I,SUBJ_PQP,COND_P,COND_P2,COND_PC,IMP_P,IMP_PC,INF_P,INF_PP,PART_PR,PART_ALL}  from './ConjConstante.js'
-import {MODE_INDICATIF,MODE_SUBJONCTIF,MODE_CONDITIONNEL,MODE_IMPERATIF,MODE_PARTICIPE,MODE_INFINITIF,DETAIL_MODE} from './ConjConstante.js'
+import ConjugaisonBox from './conjugaison/ConjugaisonBox';
+import ModeBox from './conjugaison/ModeBox';
 
-/* same function as in php */
-function stripTags (input, allowed) {
+import {getTemps, IND_P, IND_PC, IND_I, IND_PQP, IND_FS, IND_FA, IND_PS, IND_PA, DETAIL_TEMPS} from '../features/ConjConstante.js'
+import {AUCUN, SUBJ_P,SUBJ_PC,SUBJ_I,SUBJ_PQP,COND_P,COND_P2,COND_PC,IMP_P,IMP_PC,INF_P,INF_PP,PART_PR,PART_ALL}  from '../features/ConjConstante.js'
+import {MODE_INDICATIF,MODE_SUBJONCTIF,MODE_CONDITIONNEL,MODE_IMPERATIF,MODE_PARTICIPE,MODE_INFINITIF,DETAIL_MODE} from '../features/ConjConstante.js'
 
-  allowed = (((allowed || "") + "").toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
-  var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
-      commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
-  return input.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
-      return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
-  });
-}
+
 
 /* Class to control the input of a verb */
 class VerbeInput extends React.Component {
@@ -186,25 +179,7 @@ class VerbeInput extends React.Component {
       }
 }
 
-/* update the conjugaison with the tense box */
-class ConjugaisonBox extends React.Component {
-  render() {
-    return (
-      <div className='col-md-3 col-sm-6'>
-        <h5>{this.props.temps}</h5>
-        <p>{Parser(stripTags(this.props.conjugaison,'<b></b><br>'))}</p>
-      </div>
-    );
-  }
-}
-/* display a mode */
-class ModeBox extends React.Component {
-  render() {
-    return (
-      <h2 className='bg-primary text-white p-2'>{this.props.mode}</h2>
-    );
-  }
-}
+
 
 
 

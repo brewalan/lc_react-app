@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import NuageVerbe from './inc/NuageVerbe'
-import VerbeInput from './inc/VerbeInput'
+import NuageVerbeReact from './components/nuage/NuageVerbeReact'
+import VerbeInput from './components/VerbeInput'
 import reportWebVitals from './reportWebVitals';
+import NuageVerbeGenerator from './features/NuageVerbeGenerator';
 
+/* generate the verb cloud */
+export const nuage = new NuageVerbeGenerator().getNuageVerbe();
 
 
 const verbeInput = ReactDOM.createRoot(document.getElementById('verbeInput'));
@@ -12,7 +15,7 @@ const nuageVerbe = ReactDOM.createRoot(document.getElementById('nuageVerbe'));
 
 nuageVerbe.render(
   <React.StrictMode>
-    <NuageVerbe />
+    <NuageVerbeReact />
   </React.StrictMode>
 );
 
