@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import NuageVerbeReact from './components/nuage/NuageVerbeReact'
 import VerbeInput from './components/VerbeInput'
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './example/reportWebVitals';
 import NuageVerbeGenerator from './features/NuageVerbeGenerator';
 
 /* generate the verb cloud */

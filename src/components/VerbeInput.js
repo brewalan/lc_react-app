@@ -1,14 +1,63 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './VerbeInput.css'
-import ConjugaisonBox from './conjugaison/ConjugaisonBox';
-import ModeBox from './conjugaison/ModeBox';
-
-import {getTemps, IND_P, IND_PC, IND_I, IND_PQP, IND_FS, IND_FA, IND_PS, IND_PA, DETAIL_TEMPS} from '../features/ConjConstante.js'
-import {AUCUN, SUBJ_P,SUBJ_PC,SUBJ_I,SUBJ_PQP,COND_P,COND_P2,COND_PC,IMP_P,IMP_PC,INF_P,INF_PP,PART_PR,PART_ALL}  from '../features/ConjConstante.js'
-import {MODE_INDICATIF,MODE_SUBJONCTIF,MODE_CONDITIONNEL,MODE_IMPERATIF,MODE_PARTICIPE,MODE_INFINITIF,DETAIL_MODE} from '../features/ConjConstante.js'
+import ConjugaisonVerbe from './conjugaison/ConjugaisonVerbe';
+import ProposeVerbe from './conjugaison/ProposeVerbe';
 
 
+
+const defaultVbConjug = {
+  "verbe":"r",
+  "HTTP_HOST":"leconjugueur.lefigaro.fr",
+  "REMOTE_HOST":null,
+  "parametre":{
+    "originalVerbe":"r",
+    "param":"",
+    "feminin":false,
+    "question":false,
+    "negation":false,
+    "passif":false,
+    "auxiEtre":false,
+    "auxiAvoir":false,
+    "pronominal":false,
+    "pronominalEn":false},
+  "caracteristique":{
+    "existe":false,
+    "propose":["r\u00e9er","rire","ruer","rader","rager","raire","r\u00e2ler","ramer","\u00eatre"],
+    "orthographe1990":false,
+    "groupe":0,
+    "autoriseFeminin":true,
+    "autorisePassif":true,
+    "autoriseAuxiEtre":false,
+    "autorisePronominal":true,
+    "autorisePronominalEn":false,
+    "auxiliaire":0},
+  "conjugaison":{
+    "IND_P":"",
+    "IND_PC":"",
+    "IND_I":"",
+    "IND_PQP":"",
+    "IND_PS":"",
+    "IND_PA":"",
+    "IND_FS":"",
+    "IND_FA":"",
+    "SUBJ_P":"",
+    "SUBJ_PC":"",
+    "SUBJ_I":"",
+    "SUBJ_PQP":"",
+    "COND_P":"",
+    "COND_PC":"",
+    "COND_P2":"",
+    "IMP_P":"",
+    "IMP_PC":"",
+    "PART_PR":"",
+    "PART_ALL":"",
+    "INF_P":"",
+    "INF_PP":"",
+    "GER_P":"",
+    "FUTUR_PROCHE":"",
+    "PASSE_PROCHE":""},
+  "similaire":["-"]};
 
 /* Class to control the input of a verb */
 class VerbeInput extends React.Component {
@@ -16,7 +65,7 @@ class VerbeInput extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {value: '',vbConjug: defaultVbConjug};
     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,6 +85,7 @@ class VerbeInput extends React.Component {
 
       handleClick(e,vb) {
         e.preventDefault();
+        this.setState({value: vb});
         console.log('this is:'+vb, this);
         this.loadVerbe(vb);
       };   
@@ -50,12 +100,12 @@ class VerbeInput extends React.Component {
             fetch(urlVb)
             .then(results => results.json())
             .then(info => {
-                this.setState(info);
+                this.setState({vbConjug: info});
                 /* check if verbe exists */
                 if (info.caracteristique.existe) {
-                  this.updateConjugueVerbe(info);
+                  //this.updateConjugueVerbe(info);
                 } else {
-                  this.displayPropose(info);
+                  //this.displayPropose(info);
                 }
               })
             .catch(console.log);                
@@ -67,14 +117,21 @@ class VerbeInput extends React.Component {
       }  
      
 
+
+
       /* display verb proposal */
       displayPropose(info) {
+        const listPropose = this.state.vbConjug.caracteristique.propose.map((element) =>
+          /*<VerbeDuNuage key={element.verbe} verbe={element.verbe} taille={element.taille} separateur={element.separateur} />*/
+          console.log(element)
+        );
         this.verbeConjugaison.render( 
           <React.StrictMode>
             <div className='alert alert-warning' role='alert'>
               <h3>Le verbe {info.parametre.originalVerbe} n'a pas été trouvé.</h3>
               <p>Voici une proposition de verbes :</p>
               <ul>
+                {listPropose}
                 <li><button className='bg-alert-warning' onClick={(e)=>this.handleClick(e,'aimer')}>aimer</button></li>
                 <li><button onClick={(e)=>this.handleClick(e,'regarder')}>regarder</button></li>
               </ul>
@@ -82,81 +139,12 @@ class VerbeInput extends React.Component {
           </React.StrictMode>
         );
       }
-
-      /* display temps + conjugaison */
-      renderConjugaisonBox(temps,conjugaison) {
-        return <ConjugaisonBox temps={temps} conjugaison={conjugaison} />
-      }
-      renderModeBox(mode) {
-        return <ModeBox mode={mode} />
-      }
-
-      /* mise à jour de la conjugaison du verbe */
-      updateConjugueVerbe(info) {
-        this.verbeConjugaison.render(
-          <React.StrictMode>
-              <h1 className='text-center bg-primary text-white py-3'>Conjugaison du verbe {info.verbe}</h1>
-              {/* Indicatif */}
-              {this.renderModeBox(getTemps(MODE_INDICATIF,DETAIL_MODE),info.conjugaison.IND_P)}
-              <div className='row'>
-                {this.renderConjugaisonBox(getTemps(IND_P,DETAIL_TEMPS),info.conjugaison.IND_P)}
-                {this.renderConjugaisonBox(getTemps(IND_PC,DETAIL_TEMPS),info.conjugaison.IND_PC)}
-                {this.renderConjugaisonBox(getTemps(IND_I,DETAIL_TEMPS),info.conjugaison.IND_I)}
-                {this.renderConjugaisonBox(getTemps(IND_PQP,DETAIL_TEMPS),info.conjugaison.IND_PQP)}
-              </div>
-              <div className='row'>
-                {this.renderConjugaisonBox(getTemps(IND_PS,DETAIL_TEMPS),info.conjugaison.IND_PS)}
-                {this.renderConjugaisonBox(getTemps(IND_PA,DETAIL_TEMPS),info.conjugaison.IND_PA)}
-                {this.renderConjugaisonBox(getTemps(IND_FS,DETAIL_TEMPS),info.conjugaison.IND_FS)}
-                {this.renderConjugaisonBox(getTemps(IND_FA,DETAIL_TEMPS),info.conjugaison.IND_FA)}
-              </div>
-  
-              {/* Subjonctif */}
-              {this.renderModeBox(getTemps(MODE_SUBJONCTIF,DETAIL_MODE),info.conjugaison.IND_P)}
-              <div className='row'>
-                {this.renderConjugaisonBox(getTemps(SUBJ_P,DETAIL_TEMPS),info.conjugaison.SUBJ_P)}
-                {this.renderConjugaisonBox(getTemps(SUBJ_PC,DETAIL_TEMPS),info.conjugaison.SUBJ_PC)}
-                {this.renderConjugaisonBox(getTemps(SUBJ_I,DETAIL_TEMPS),info.conjugaison.SUBJ_I)}
-                {this.renderConjugaisonBox(getTemps(SUBJ_PQP,DETAIL_TEMPS),info.conjugaison.SUBJ_PQP)}
-              </div>   
-              {/* Conditionnel */}
-              {this.renderModeBox(getTemps(MODE_CONDITIONNEL,DETAIL_MODE),info.conjugaison.IND_P)}
-              <div className='row'>
-                {this.renderConjugaisonBox(getTemps(COND_P,DETAIL_TEMPS),info.conjugaison.COND_P)}
-                {this.renderConjugaisonBox(getTemps(COND_PC,DETAIL_TEMPS),info.conjugaison.COND_PC)}
-                {this.renderConjugaisonBox(getTemps(COND_P2,DETAIL_TEMPS),info.conjugaison.COND_P2)}
-                {this.renderConjugaisonBox(getTemps(AUCUN,DETAIL_TEMPS),"&nbsp;")}
-              </div>      
-              {/* Impératif & participe */}
-              <div className='row'>
-                <div className='col-6'>
-                  {this.renderModeBox(getTemps(MODE_IMPERATIF,DETAIL_MODE),info.conjugaison.IND_P)}
-                </div>
-                <div className='col-6'>
-                  {this.renderModeBox(getTemps(MODE_PARTICIPE,DETAIL_MODE),info.conjugaison.IND_P)}
-                </div>
-              </div>
-              <div className='row'>
-                {this.renderConjugaisonBox(getTemps(IMP_P,DETAIL_TEMPS),info.conjugaison.IMP_P)}
-                {this.renderConjugaisonBox(getTemps(IMP_PC,DETAIL_TEMPS),info.conjugaison.IMP_PC)}
-                {this.renderConjugaisonBox(getTemps(PART_PR,DETAIL_TEMPS),info.conjugaison.PART_PR)}
-                {this.renderConjugaisonBox(getTemps(PART_ALL,DETAIL_TEMPS),info.conjugaison.PART_ALL)}
-              </div>                                                                                                
-              {/* Infinitif */}
-              {this.renderModeBox(getTemps(MODE_INFINITIF,DETAIL_MODE),info.conjugaison.IND_P)}
-              <div className='row'>
-                {this.renderConjugaisonBox(getTemps(INF_P,DETAIL_TEMPS),info.conjugaison.INF_P)}
-                {this.renderConjugaisonBox(getTemps(INF_PP,DETAIL_TEMPS),info.conjugaison.INF_PP)}
-                {this.renderConjugaisonBox(getTemps(AUCUN,DETAIL_TEMPS),"&nbsp;")}
-                {this.renderConjugaisonBox(getTemps(AUCUN,DETAIL_TEMPS),"&nbsp;")}
-              </div>                            
-          </React.StrictMode>
-        );
-      }
       
       /* display text input bar for conjugaison */
       render() {
+        //const vbExist=this.state.vbConjug.caracteristique.existe;
         return (
+          <div>
             <form onSubmit={this.handleSubmit}>
             <label>
               <div className="input-group mb-3">
@@ -173,8 +161,12 @@ class VerbeInput extends React.Component {
                   onChange={this.handleChange} />
                   <input className='btn btn-outline-secondary' type="submit" value="Conjuguer" />
                 </div>
-            </label>
-          </form>
+              </label>
+            </form>
+            <ProposeVerbe propose={this.state.vbConjug.caracteristique.propose}  originalVerbe={this.state.vbConjug.parametre.originalVerbe} 
+            existe={this.state.vbConjug.caracteristique.existe} />
+            <ConjugaisonVerbe vbConjug={this.state.vbConjug} />
+          </div>
         );
       }
 }
