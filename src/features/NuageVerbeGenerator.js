@@ -122,8 +122,8 @@ class NuageVerbeGenerator {
       this.addNuage(this.taille7,6,"t2");
       this.addNuage(this.taille6,8,"t3");
       this.addNuage(this.taille5,10,"t4");
-      this.addNuage(this.taille4,20,"t5");
-      this.addNuage(this.taille3,25,"t6");
+      this.addNuage(this.taille4,10,"t5");
+      this.addNuage(this.taille3,15,"t6");
       this.nuage = this.shuffleArray(this.nuage);
       this.nuage[this.nuage.length-1].separateur="";
     }

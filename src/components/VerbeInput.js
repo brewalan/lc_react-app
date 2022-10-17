@@ -4,6 +4,7 @@ import { conjAPI, nuage } from '..';
 import ConjugaisonVerbe from './conjugaison/ConjugaisonVerbe';
 import ProposeVerbe from './conjugaison/ProposeVerbe';
 import NuageVerbeReact from './nuage/NuageVerbeReact';
+import HistoryVerbeReact from './nuage/HistoryVerbeReact';
 import { defaultVbConjug } from '../features/DefaultVbConj';
 
 
@@ -16,9 +17,11 @@ class VerbeInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+          loading: false,
           value: '',
           vbConjug: defaultVbConjug,
-          nuageValue: nuage
+          nuageValue: nuage,
+          historyVerbe: []
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -55,6 +58,8 @@ class VerbeInput extends React.Component {
             .then(info => {
               this.setState({loading: false});
               this.setState({vbConjug: info});
+              const history = conjAPI.getHistoryVerbe();
+              this.setState({historyVerbe: history})
             })
             .catch(console.log);                                         
         });
@@ -77,6 +82,8 @@ class VerbeInput extends React.Component {
         //const vbExist=this.state.vbConjug.caracteristique.existe;
         return (
             <React.Fragment>
+            <div className="row py-2">
+              <div className="col-12 col-md-8">              
               <div className="input-group mb-3 mx-auto">
                 <span className="input-group-text" id="basic-addon1">
                   <i className="fa-duotone fa-magnifying-glass fa-2x"></i>
@@ -104,15 +111,23 @@ class VerbeInput extends React.Component {
                   <i className="fa-duotone fa-venus fa-2x"></i>
                 </button>
               </div>
-            <ProposeVerbe 
-              propose={this.state.vbConjug.caracteristique.propose}  
-              originalVerbe={this.state.vbConjug.parametre.originalVerbe}
-              existe={this.state.vbConjug.caracteristique.existe} 
-              onVerbeChange={this.handleVerbePropose} />
-            <ConjugaisonVerbe vbConjug={this.state.vbConjug} />
-            <NuageVerbeReact 
-              onVerbeChange={this.handleVerbePropose}
-              nuageValue={this.state.nuageValue}  />
+              <ProposeVerbe 
+                propose={this.state.vbConjug.caracteristique.propose}  
+                originalVerbe={this.state.vbConjug.parametre.originalVerbe}
+                existe={this.state.vbConjug.caracteristique.existe} 
+                onVerbeChange={this.handleVerbePropose} />
+
+                <ConjugaisonVerbe vbConjug={this.state.vbConjug} />
+              </div>
+              <div className="col-12 col-md-4 bg-light">
+                <HistoryVerbeReact
+                  onVerbeChange={this.handleVerbePropose}
+                  historyValue={this.state.historyVerbe}  />
+                <NuageVerbeReact 
+                  onVerbeChange={this.handleVerbePropose}
+                  nuageValue={this.state.nuageValue}  />
+              </div>
+            </div>
           </React.Fragment>
         );
       }
