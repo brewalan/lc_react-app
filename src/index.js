@@ -4,20 +4,14 @@ import './index.css';
 import VerbeInput from './components/VerbeInput'
 import reportWebVitals from './example/reportWebVitals';
 import NuageVerbeGenerator from './features/NuageVerbeGenerator';
+import ConjAPI from './api/ConjAPI';
 
 /* generate the verb cloud */
 export const nuage = new NuageVerbeGenerator().getNuageVerbe();
+export const conjAPI = new ConjAPI();
 
-
-const verbeInput = ReactDOM.createRoot(document.getElementById('verbeInput'));
-/*const nuageVerbe = ReactDOM.createRoot(document.getElementById('nuageVerbe'));
-
-nuageVerbe.render(
-  <React.StrictMode>
-    <NuageVerbeReact />
-  </React.StrictMode>
-);*/
-
+/* start the React program */
+const verbeInput = ReactDOM.createRoot(document.getElementById('root'));
 verbeInput.render(
   <React.StrictMode>
     <VerbeInput />

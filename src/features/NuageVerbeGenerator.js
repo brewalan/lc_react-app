@@ -1,5 +1,5 @@
 
-/* Generate a NuageVerb with different sizes */
+/* Generate a NuageVerbe with different sizes */
 class NuageVerbeGenerator {
     
     taille10 = ["être","avoir"];

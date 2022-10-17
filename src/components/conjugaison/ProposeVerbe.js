@@ -27,18 +27,20 @@ class ProposeVerbe extends React.Component {
                     </button>
                 </li>
             );
-
-            return (
-                <React.StrictMode>
-                <div className='alert alert-warning' role='alert'>
-                    <h3>Le verbe {this.props.originalVerbe} n'a pas été trouvé.</h3>
-                    <p>Voici une proposition de verbes :</p>
-                    <ul>
-                        {listPropose}
-                    </ul>
-                </div>
-                </React.StrictMode>
-            );
+            
+            if (this.props.originalVerbe!=="") {
+                return (
+                    <React.StrictMode>
+                    <div className='alert alert-warning' role='alert'>
+                        <h3>Le verbe {this.props.originalVerbe} n'a pas été trouvé.</h3>
+                        <p>Voici une proposition de verbes :</p>
+                        <ul>
+                            {listPropose}
+                        </ul>
+                    </div>
+                    </React.StrictMode>
+                );
+            }
         }
     }
 }

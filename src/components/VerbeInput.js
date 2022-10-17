@@ -1,67 +1,15 @@
 import React from 'react';
 import './VerbeInput.css'
-import { nuage } from '..';
+import { conjAPI, nuage } from '..';
 import ConjugaisonVerbe from './conjugaison/ConjugaisonVerbe';
 import ProposeVerbe from './conjugaison/ProposeVerbe';
 import NuageVerbeReact from './nuage/NuageVerbeReact';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { solid, regular, light, thin, duotone, icon } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+import { defaultVbConjug } from '../features/DefaultVbConj';
 
 
 
 
-const defaultVbConjug = {
-  "verbe":"r",
-  "HTTP_HOST":"leconjugueur.lefigaro.fr",
-  "REMOTE_HOST":null,
-  "parametre":{
-    "originalVerbe":"r",
-    "param":"",
-    "feminin":false,
-    "question":false,
-    "negation":false,
-    "passif":false,
-    "auxiEtre":false,
-    "auxiAvoir":false,
-    "pronominal":false,
-    "pronominalEn":false},
-  "caracteristique":{
-    "existe":false,
-    "propose":["r\u00e9er","rire","ruer","rader","rager","raire","r\u00e2ler","ramer","\u00eatre"],
-    "orthographe1990":false,
-    "groupe":0,
-    "autoriseFeminin":true,
-    "autorisePassif":true,
-    "autoriseAuxiEtre":false,
-    "autorisePronominal":true,
-    "autorisePronominalEn":false,
-    "auxiliaire":0},
-  "conjugaison":{
-    "IND_P":"",
-    "IND_PC":"",
-    "IND_I":"",
-    "IND_PQP":"",
-    "IND_PS":"",
-    "IND_PA":"",
-    "IND_FS":"",
-    "IND_FA":"",
-    "SUBJ_P":"",
-    "SUBJ_PC":"",
-    "SUBJ_I":"",
-    "SUBJ_PQP":"",
-    "COND_P":"",
-    "COND_PC":"",
-    "COND_P2":"",
-    "IMP_P":"",
-    "IMP_PC":"",
-    "PART_PR":"",
-    "PART_ALL":"",
-    "INF_P":"",
-    "INF_PP":"",
-    "GER_P":"",
-    "FUTUR_PROCHE":"",
-    "PASSE_PROCHE":""},
-  "similaire":["-"]};
+
 
 /* Class to control the input of a verb */
 class VerbeInput extends React.Component {
@@ -103,19 +51,12 @@ class VerbeInput extends React.Component {
         this.setState({
             loading: true
         }, () => {
-            const urlVb='https://leconjugueur.lefigaro.fr/php5/api.php?v='+vb
-            fetch(urlVb)
-            .then(results => results.json())
+            conjAPI.getVerbeInfo(vb)
             .then(info => {
-                this.setState({vbConjug: info});
-                /* check if verbe exists */
-                if (info.caracteristique.existe) {
-                  //this.updateConjugueVerbe(info);
-                } else {
-                  //this.displayPropose(info);
-                }
-              })
-            .catch(console.log);                
+              this.setState({loading: false});
+              this.setState({vbConjug: info});
+            })
+            .catch(console.log);                                         
         });
       }
 
@@ -156,7 +97,12 @@ class VerbeInput extends React.Component {
                 </button>
               </div>
               <div>
-               
+                <button>
+                  <i className="fa-duotone fa-mars fa-2x"></i>
+                </button>
+                <button>
+                  <i className="fa-duotone fa-venus fa-2x"></i>
+                </button>
               </div>
             <ProposeVerbe 
               propose={this.state.vbConjug.caracteristique.propose}  
