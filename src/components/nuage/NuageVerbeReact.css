@@ -16,7 +16,7 @@
 .t1 {
     font-size:xx-large;
 }
-button {
+button.btn-nuage {
     background-color: white;
     border: none;
     color: royalblue;

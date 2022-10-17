@@ -1,25 +1,43 @@
 import React from 'react';
-import { nuage } from '../..';
+import ModeBox from '../conjugaison/ModeBox';
 import './NuageVerbeReact.css'
-import VerbeDuNuage from './VerbeDuNuage';
 
  
 
 class NuageVerbeReact extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {nuageValue: nuage};
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
   }
 
+  handleClick(e) {
+    this.props.onVerbeChange(e.target.value);
+  }
+
+  /* display nuage tag */
   render() {
-    const listVerbe = this.state.nuageValue.map((element) =>
-      <VerbeDuNuage key={element.verbe} verbe={element.verbe} taille={element.taille} separateur={element.separateur} />
+    const listVerbeNuage = this.props.nuageValue.map((element) => {
+      const btnClass = 'btn-nuage '+element.taille;
+      return (
+        <span key={element.verbe}>
+          <button         
+            className={btnClass} 
+            value={element.verbe}
+            onClick={this.handleClick}>
+              {element.verbe}
+          </button>{element.separateur}
+        </span>   
+      )}
     );
+
     return (
-      <div className="text-center pb-2">
-        {listVerbe}
-      </div>
+      <React.Fragment>
+        <ModeBox mode='Nuage de verbes' />
+        <div className="text-center pb-2">
+          {listVerbeNuage}
+        </div>
+      </React.Fragment>
     );
   }
 }

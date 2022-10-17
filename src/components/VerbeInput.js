@@ -1,8 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './VerbeInput.css'
+import { nuage } from '..';
 import ConjugaisonVerbe from './conjugaison/ConjugaisonVerbe';
 import ProposeVerbe from './conjugaison/ProposeVerbe';
+import NuageVerbeReact from './nuage/NuageVerbeReact';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { solid, regular, light, thin, duotone, icon } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+
 
 
 
@@ -61,34 +65,37 @@ const defaultVbConjug = {
 
 /* Class to control the input of a verb */
 class VerbeInput extends React.Component {
-    verbeConjugaison = ReactDOM.createRoot(document.getElementById('verbeConjug'));
-
     constructor(props) {
         super(props);
-        this.state = {value: '',vbConjug: defaultVbConjug};
+        this.state = {
+          value: '',
+          vbConjug: defaultVbConjug,
+          nuageValue: nuage
+        };
     
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleVerbePropose = this.handleVerbePropose.bind(this);
       }
 
+      /* when typing text in the input */
       handleChange(event) {
         this.setState({value: event.target.value});
-        console.log("handleChange "+ event.target.value);
       }
     
-      handleSubmit(event) {
-        //ending managing the event
-        event.preventDefault();
-        const vb = this.state.value;
-        this.loadVerbe(vb);        
-      }
-
-      handleClick(e,vb) {
+      /* when click on conjuguer button */
+      handleClick(e) {
         e.preventDefault();
-        this.setState({value: vb});
-        console.log('this is:'+vb, this);
+        const vb = this.state.value;
         this.loadVerbe(vb);
-      };   
+        this.inputVerbe.focus();
+      };  
+      
+      /* when clicking on a proposal verb or a nuage verb */
+      handleVerbePropose(vb) {
+        this.setState({value: vb});
+        this.loadVerbe(vb);
+      }
 
       /* start to load a new verb and update the screen */
       loadVerbe(vb) {
@@ -112,42 +119,24 @@ class VerbeInput extends React.Component {
         });
       }
 
+      /* focus by default on the Verbe Input after loading */
       componentDidMount(){
         this.inputVerbe.focus();
       }  
      
 
 
-
-      /* display verb proposal */
-      displayPropose(info) {
-        const listPropose = this.state.vbConjug.caracteristique.propose.map((element) =>
-          /*<VerbeDuNuage key={element.verbe} verbe={element.verbe} taille={element.taille} separateur={element.separateur} />*/
-          console.log(element)
-        );
-        this.verbeConjugaison.render( 
-          <React.StrictMode>
-            <div className='alert alert-warning' role='alert'>
-              <h3>Le verbe {info.parametre.originalVerbe} n'a pas été trouvé.</h3>
-              <p>Voici une proposition de verbes :</p>
-              <ul>
-                {listPropose}
-                <li><button className='bg-alert-warning' onClick={(e)=>this.handleClick(e,'aimer')}>aimer</button></li>
-                <li><button onClick={(e)=>this.handleClick(e,'regarder')}>regarder</button></li>
-              </ul>
-            </div>
-          </React.StrictMode>
-        );
-      }
-      
-      /* display text input bar for conjugaison */
+     
+      /* render main page of conjugaison : 
+      - input bar 
+      - propose
+      - conjugaison
+      - nuage verbe */
       render() {
         //const vbExist=this.state.vbConjug.caracteristique.existe;
         return (
-          <div>
-            <form onSubmit={this.handleSubmit}>
-            <label>
-              <div className="input-group mb-3">
+            <React.Fragment>
+              <div className="input-group mb-3 mx-auto">
                 <span className="input-group-text" id="basic-addon1">
                   <i className="fa-duotone fa-magnifying-glass fa-2x"></i>
                 </span>              
@@ -159,19 +148,29 @@ class VerbeInput extends React.Component {
                   placeholder="Verbe à conjuguer" 
                   value={this.state.value} 
                   onChange={this.handleChange} />
-                  <input className='btn btn-outline-secondary' type="submit" value="Conjuguer" />
-                </div>
-              </label>
-            </form>
-            <ProposeVerbe propose={this.state.vbConjug.caracteristique.propose}  originalVerbe={this.state.vbConjug.parametre.originalVerbe} 
-            existe={this.state.vbConjug.caracteristique.existe} />
+                <button 
+                  className='btn btn-outline-secondary' 
+                  onClick={this.handleClick} 
+                  value={this.state.value}>
+                    Conjuguer
+                </button>
+              </div>
+              <div>
+               
+              </div>
+            <ProposeVerbe 
+              propose={this.state.vbConjug.caracteristique.propose}  
+              originalVerbe={this.state.vbConjug.parametre.originalVerbe}
+              existe={this.state.vbConjug.caracteristique.existe} 
+              onVerbeChange={this.handleVerbePropose} />
             <ConjugaisonVerbe vbConjug={this.state.vbConjug} />
-          </div>
+            <NuageVerbeReact 
+              onVerbeChange={this.handleVerbePropose}
+              nuageValue={this.state.nuageValue}  />
+          </React.Fragment>
         );
       }
 }
-
-
 
 
 

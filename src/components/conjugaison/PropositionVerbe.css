@@ -1,3 +1,9 @@
-button {
-    background-color:transparent;
+button.btn-propose {
+    background-color:transparent !important;
+    border: none;
+    color: royalblue;
+    text-align: center;
+    text-decoration: none;
+    padding: 0;
+    cursor: pointer;    
 }

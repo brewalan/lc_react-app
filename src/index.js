@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import NuageVerbeReact from './components/nuage/NuageVerbeReact'
 import VerbeInput from './components/VerbeInput'
 import reportWebVitals from './example/reportWebVitals';
 import NuageVerbeGenerator from './features/NuageVerbeGenerator';
@@ -11,13 +10,13 @@ export const nuage = new NuageVerbeGenerator().getNuageVerbe();
 
 
 const verbeInput = ReactDOM.createRoot(document.getElementById('verbeInput'));
-const nuageVerbe = ReactDOM.createRoot(document.getElementById('nuageVerbe'));
+/*const nuageVerbe = ReactDOM.createRoot(document.getElementById('nuageVerbe'));
 
 nuageVerbe.render(
   <React.StrictMode>
     <NuageVerbeReact />
   </React.StrictMode>
-);
+);*/
 
 verbeInput.render(
   <React.StrictMode>
