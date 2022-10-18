@@ -1,10 +1,9 @@
 import React from 'react';
 import ConjugaisonBox from './ConjugaisonBox';
 import ModeBox from './ModeBox';
-
-import {getTemps, IND_P, IND_PC, IND_I, IND_PQP, IND_FS, IND_FA, IND_PS, IND_PA, DETAIL_TEMPS} from '../../features/ConjConstante.js'
-import {AUCUN, SUBJ_P,SUBJ_PC,SUBJ_I,SUBJ_PQP,COND_P,COND_P2,COND_PC,IMP_P,IMP_PC,INF_P,INF_PP,PART_PR,PART_ALL}  from '../../features/ConjConstante.js'
-import {MODE_INDICATIF,MODE_SUBJONCTIF,MODE_CONDITIONNEL,MODE_IMPERATIF,MODE_PARTICIPE,MODE_INFINITIF,DETAIL_MODE} from '../../features/ConjConstante.js'
+import Parser from 'html-react-parser'
+import { conjText,conjMode,conjTemps } from '../../features/ConjIcon';
+import { formateGroupe } from '../../features/ConjConstante';
 
 /* display conjugaison */
 class ConjugaisonVerbe extends React.Component {
@@ -14,7 +13,7 @@ class ConjugaisonVerbe extends React.Component {
         return <ConjugaisonBox temps={temps} conjugaison={conjugaison} />
     }
     renderModeBox(mode) {
-        return <ModeBox mode={mode} />
+        return <ModeBox mode={mode} />        
     }
 
     /* main conjugaison display only if verb exists */
@@ -24,67 +23,82 @@ class ConjugaisonVerbe extends React.Component {
             return (
                 <React.StrictMode>
                     <div id="VerbeConjug">
-                    <h1 className='text-center bg-primary text-white py-3'>Conjugaison du verbe {info.verbe}</h1>
-                    {/* Indicatif */}
-                    {this.renderModeBox(getTemps(MODE_INDICATIF,DETAIL_MODE),info.conjugaison.IND_P)}
+                    <h1 className='text-center bg-primary text-white py-3'>
+                            {conjText.conjugaisonVerbe} {info.verbe}
+                    </h1>
+                    <p className="align-middle">
+                        {Parser(formateGroupe(info.caracteristique.groupe))}
+                    </p>
+                {/* Indicatif */}
+                    {this.renderModeBox(conjMode.indicatif)}
                     <div className='row'>
-                    {this.renderConjugaisonBox(getTemps(IND_P,DETAIL_TEMPS),info.conjugaison.IND_P)}
-                    {this.renderConjugaisonBox(getTemps(IND_PC,DETAIL_TEMPS),info.conjugaison.IND_PC)}
-                    {this.renderConjugaisonBox(getTemps(IND_I,DETAIL_TEMPS),info.conjugaison.IND_I)}
-                    {this.renderConjugaisonBox(getTemps(IND_PQP,DETAIL_TEMPS),info.conjugaison.IND_PQP)}
+                    {this.renderConjugaisonBox(conjTemps.IND_P,info.conjugaison.IND_P)}
+                    {this.renderConjugaisonBox(conjTemps.IND_PC,info.conjugaison.IND_PC)}
+                    {this.renderConjugaisonBox(conjTemps.IND_I,info.conjugaison.IND_I)}
+                    {this.renderConjugaisonBox(conjTemps.IND_PQP,info.conjugaison.IND_PQP)}
                     </div>
                     <div className='row'>
-                    {this.renderConjugaisonBox(getTemps(IND_PS,DETAIL_TEMPS),info.conjugaison.IND_PS)}
-                    {this.renderConjugaisonBox(getTemps(IND_PA,DETAIL_TEMPS),info.conjugaison.IND_PA)}
-                    {this.renderConjugaisonBox(getTemps(IND_FS,DETAIL_TEMPS),info.conjugaison.IND_FS)}
-                    {this.renderConjugaisonBox(getTemps(IND_FA,DETAIL_TEMPS),info.conjugaison.IND_FA)}
+                    {this.renderConjugaisonBox(conjTemps.IND_PS,info.conjugaison.IND_PS)}
+                    {this.renderConjugaisonBox(conjTemps.IND_PA,info.conjugaison.IND_PA)}
+                    {this.renderConjugaisonBox(conjTemps.IND_FS,info.conjugaison.IND_FS)}
+                    {this.renderConjugaisonBox(conjTemps.IND_FA,info.conjugaison.IND_FA)}
                     </div>
 
                     {/* Subjonctif */}
-                    {this.renderModeBox(getTemps(MODE_SUBJONCTIF,DETAIL_MODE),info.conjugaison.IND_P)}
+                    {this.renderModeBox(conjMode.subjonctif)}
                     <div className='row'>
-                    {this.renderConjugaisonBox(getTemps(SUBJ_P,DETAIL_TEMPS),info.conjugaison.SUBJ_P)}
-                    {this.renderConjugaisonBox(getTemps(SUBJ_PC,DETAIL_TEMPS),info.conjugaison.SUBJ_PC)}
-                    {this.renderConjugaisonBox(getTemps(SUBJ_I,DETAIL_TEMPS),info.conjugaison.SUBJ_I)}
-                    {this.renderConjugaisonBox(getTemps(SUBJ_PQP,DETAIL_TEMPS),info.conjugaison.SUBJ_PQP)}
+                    {this.renderConjugaisonBox(conjTemps.SUBJ_P,info.conjugaison.SUBJ_P)}
+                    {this.renderConjugaisonBox(conjTemps.SUBJ_PC,info.conjugaison.SUBJ_PC)}
+                    {this.renderConjugaisonBox(conjTemps.SUBJ_I,info.conjugaison.SUBJ_I)}
+                    {this.renderConjugaisonBox(conjTemps.SUBJ_PQP,info.conjugaison.SUBJ_PQP)}
                     </div>   
                     {/* Conditionnel */}
-                    {this.renderModeBox(getTemps(MODE_CONDITIONNEL,DETAIL_MODE),info.conjugaison.IND_P)}
+                    {this.renderModeBox(conjMode.conditionnel)}
                     <div className='row'>
-                    {this.renderConjugaisonBox(getTemps(COND_P,DETAIL_TEMPS),info.conjugaison.COND_P)}
-                    {this.renderConjugaisonBox(getTemps(COND_PC,DETAIL_TEMPS),info.conjugaison.COND_PC)}
-                    {this.renderConjugaisonBox(getTemps(COND_P2,DETAIL_TEMPS),info.conjugaison.COND_P2)}
-                    {this.renderConjugaisonBox(getTemps(AUCUN,DETAIL_TEMPS),"&nbsp;")}
+                    {this.renderConjugaisonBox(conjTemps.COND_P,info.conjugaison.COND_P)}
+                    {this.renderConjugaisonBox(conjTemps.COND_PC,info.conjugaison.COND_PC)}
+                    {this.renderConjugaisonBox(conjTemps.COND_P2,info.conjugaison.COND_P2)}
+                    {this.renderConjugaisonBox(conjTemps.AUCUN,"&nbsp;")}
                     </div>      
                     {/* Impératif & participe */}
                     <div className='row'>
                     <div className='col-6'>
-                        {this.renderModeBox(getTemps(MODE_IMPERATIF,DETAIL_MODE),info.conjugaison.IND_P)}
+                        {this.renderModeBox(conjMode.imperatif)}
                     </div>
                     <div className='col-6'>
-                        {this.renderModeBox(getTemps(MODE_PARTICIPE,DETAIL_MODE),info.conjugaison.IND_P)}
+                        {this.renderModeBox(conjMode.participe)}
                     </div>
                     </div>
                     <div className='row'>
-                    {this.renderConjugaisonBox(getTemps(IMP_P,DETAIL_TEMPS),info.conjugaison.IMP_P)}
-                    {this.renderConjugaisonBox(getTemps(IMP_PC,DETAIL_TEMPS),info.conjugaison.IMP_PC)}
-                    {this.renderConjugaisonBox(getTemps(PART_PR,DETAIL_TEMPS),info.conjugaison.PART_PR)}
-                    {this.renderConjugaisonBox(getTemps(PART_ALL,DETAIL_TEMPS),info.conjugaison.PART_ALL)}
+                    {this.renderConjugaisonBox(conjTemps.IMP_P,info.conjugaison.IMP_P)}
+                    {this.renderConjugaisonBox(conjTemps.IMP_PC,info.conjugaison.IMP_PC)}
+                    {this.renderConjugaisonBox(conjTemps.PART_PR,info.conjugaison.PART_PR)}
+                    {this.renderConjugaisonBox(conjTemps.PART_ALL,info.conjugaison.PART_ALL)}
                     </div>                                                                                                
                     {/* Infinitif */}
-                    {this.renderModeBox(getTemps(MODE_INFINITIF,DETAIL_MODE),info.conjugaison.IND_P)}
+                    {this.renderModeBox(conjMode.infinitif)}
                     <div className='row'>
-                    {this.renderConjugaisonBox(getTemps(INF_P,DETAIL_TEMPS),info.conjugaison.INF_P)}
-                    {this.renderConjugaisonBox(getTemps(INF_PP,DETAIL_TEMPS),info.conjugaison.INF_PP)}
-                    {this.renderConjugaisonBox(getTemps(AUCUN,DETAIL_TEMPS),"&nbsp;")}
-                    {this.renderConjugaisonBox(getTemps(AUCUN,DETAIL_TEMPS),"&nbsp;")}
+                    {this.renderConjugaisonBox(conjTemps.INF_P,info.conjugaison.INF_P)}
+                    {this.renderConjugaisonBox(conjTemps.INF_PP,info.conjugaison.INF_PP)}
+                    {this.renderConjugaisonBox(conjTemps.AUCUN,"&nbsp;")}
+                    {this.renderConjugaisonBox(conjTemps.AUCUN,"&nbsp;")}
                     </div>          
+                    {/* Règle */}
+                    {this.renderModeBox(conjMode.regle)}
+                    <div className='row'>
+                        <p>
+                            {info.regle}
+                        </p>
+                    </div>          
+
                 </div>                  
                 </React.StrictMode>
             );
         } else {
             return (
-                <p>Aucun verbe conjugué</p>
+                <div className='alert alert-success'>
+                    {Parser(conjText.aideText)}
+                </div>
             );
         }
     }

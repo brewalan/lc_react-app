@@ -6,6 +6,7 @@ import ProposeVerbe from './conjugaison/ProposeVerbe';
 import NuageVerbeReact from './nuage/NuageVerbeReact';
 import HistoryVerbeReact from './nuage/HistoryVerbeReact';
 import { defaultVbConjug } from '../features/DefaultVbConj';
+import { conjText, iconList } from '../features/ConjIcon';
 
 
 
@@ -27,6 +28,7 @@ class VerbeInput extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleVerbePropose = this.handleVerbePropose.bind(this);
+        this.handleResetVerbeHistory = this.handleResetVerbeHistory.bind(this);
       }
 
       /* when typing text in the input */
@@ -46,6 +48,12 @@ class VerbeInput extends React.Component {
       handleVerbePropose(vb) {
         this.setState({value: vb});
         this.loadVerbe(vb);
+      }
+
+      /* delete verbe history */
+      handleResetVerbeHistory() {
+        conjAPI.resetHistoryVerbe();
+        this.setState({historyVerbe: []});
       }
 
       /* start to load a new verb and update the screen */
@@ -71,19 +79,36 @@ class VerbeInput extends React.Component {
       }  
      
 
+      /* create the different button */
+      renderButtonList() {
+        return (
+            <React.Fragment>
+              <div className="btn-group" role="group">
+                <input type="radio" cmass="btn-check" name="btnradio" id="btnMasculin" autocomplete="off" checked />
+                <label className="btn btn-outline-primary" for="btnMasculin">
+                  {iconList.iconMasculin}
+                </label>  
 
-     
+                <input type="radio" cmass="btn-check" name="btnradio" id="btnFeminin" autocomplete="off" />
+                <label className="btn btn-outline-primary" for="btnFeminin">
+                  {iconList.iconFeminin}
+                </label>  
+
+              </div>
+            </React.Fragment>     
+        );
+      }
+
       /* render main page of conjugaison : 
       - input bar 
       - propose
       - conjugaison
       - nuage verbe */
       render() {
-        //const vbExist=this.state.vbConjug.caracteristique.existe;
         return (
             <React.Fragment>
             <div className="row py-2">
-              <div className="col-12 col-md-8">              
+              <section className="col-12 col-md-8">              
               <div className="input-group mb-3 mx-auto">
                 <span className="input-group-text" id="basic-addon1">
                   <i className="fa-duotone fa-magnifying-glass fa-2x"></i>
@@ -93,40 +118,35 @@ class VerbeInput extends React.Component {
                   name='inputVerbe' 
                   className="conjug" 
                   type="text"
-                  placeholder="Verbe à conjuguer" 
+                  placeholder={conjText.vbAConjuguer} 
                   value={this.state.value} 
                   onChange={this.handleChange} />
                 <button 
                   className='btn btn-outline-secondary' 
                   onClick={this.handleClick} 
                   value={this.state.value}>
-                    Conjuguer
+                    {conjText.btnConjuguer}
                 </button>
               </div>
               <div>
-                <button>
-                  <i className="fa-duotone fa-mars fa-2x"></i>
-                </button>
-                <button>
-                  <i className="fa-duotone fa-venus fa-2x"></i>
-                </button>
+                {this.renderButtonList}
               </div>
-              <ProposeVerbe 
-                propose={this.state.vbConjug.caracteristique.propose}  
-                originalVerbe={this.state.vbConjug.parametre.originalVerbe}
-                existe={this.state.vbConjug.caracteristique.existe} 
-                onVerbeChange={this.handleVerbePropose} />
-
+                <ProposeVerbe 
+                  propose={this.state.vbConjug.caracteristique.propose}  
+                  originalVerbe={this.state.vbConjug.parametre.originalVerbe}
+                  existe={this.state.vbConjug.caracteristique.existe} 
+                  onVerbeChange={this.handleVerbePropose} />
                 <ConjugaisonVerbe vbConjug={this.state.vbConjug} />
-              </div>
-              <div className="col-12 col-md-4 bg-light">
+              </section>
+              <aside className="col-12 col-md-4 bg-light">
                 <HistoryVerbeReact
                   onVerbeChange={this.handleVerbePropose}
+                  onResetVerbeHistory={this.handleResetVerbeHistory}
                   historyValue={this.state.historyVerbe}  />
                 <NuageVerbeReact 
                   onVerbeChange={this.handleVerbePropose}
                   nuageValue={this.state.nuageValue}  />
-              </div>
+              </aside>
             </div>
           </React.Fragment>
         );

@@ -1,10 +1,9 @@
 import React from 'react';
 import './PropositionVerbe.css';
+import { conjText } from '../../features/ConjIcon';
 
-/* display a mode */
+/* display a proposal for a verb */
 class ProposeVerbe extends React.Component {
-
-//    
 
     constructor(props) {
         super(props);
@@ -16,6 +15,7 @@ class ProposeVerbe extends React.Component {
       }
 
       render() { 
+        /* only if verb exists, otherwise, blank */
         if (!this.props.existe) {
             const listPropose = this.props.propose.map((element) =>
                 <li key={element}>
@@ -32,8 +32,8 @@ class ProposeVerbe extends React.Component {
                 return (
                     <React.StrictMode>
                     <div className='alert alert-warning' role='alert'>
-                        <h3>Le verbe {this.props.originalVerbe} n'a pas été trouvé.</h3>
-                        <p>Voici une proposition de verbes :</p>
+                        <h3>{conjText.vbPropose1}{this.props.originalVerbe}{conjText.vbPropose2}</h3>
+                        <p>{conjText.vbPropose3}</p>
                         <ul>
                             {listPropose}
                         </ul>
@@ -44,12 +44,6 @@ class ProposeVerbe extends React.Component {
         }
     }
 }
-
-
-/*
-<li><button className='bg-alert-warning btn-primary-outline' onClick={(e)=>this.handleClick(e,'aimer')}>aimer</button></li>
-<li><button onClick={(e)=>this.props.handleClick(e,'regarder')}>regarder</button></li>
-*/
 
 
 export default ProposeVerbe;        

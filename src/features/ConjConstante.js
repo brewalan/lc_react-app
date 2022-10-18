@@ -276,9 +276,9 @@ export function getPersonne(persid) {
 export function formateGroupe(groupe) {
         let g ="";
         if (groupe===4) g=getLang("Auxiliaire","Auxiliary");
-        else if (groupe===1) g=getLang("Premier groupe","First group");
-        else if (groupe===2) g=getLang("Deuxième groupe","Second group");
-        else if (groupe===3) g=getLang("Troisième groupe","Third group");
+        else if (groupe===1) g=getLang("<i className='fa-light fa-2x fa-square-1'></i> Verbe du premier groupe","First group");
+        else if (groupe===2) g=getLang("<i className='fa-light fa-2x fa-square-2'></i> Verbe du deuxième groupe","Second group");
+        else if (groupe===3) g=getLang("<i className='fa-light fa-2x fa-square-3'></i> Verbe du troisième groupe","Third group");
         else if (groupe===0) g=getLang("Aucun groupe","No group");
         return g;
     }  	

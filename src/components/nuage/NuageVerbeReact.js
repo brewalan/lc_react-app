@@ -1,6 +1,7 @@
 import React from 'react';
 import ModeBox from '../conjugaison/ModeBox';
 import './NuageVerbeReact.css'
+import { conjText } from '../../features/ConjIcon';
 
  
 
@@ -33,7 +34,7 @@ class NuageVerbeReact extends React.Component {
 
     return (
       <React.Fragment>
-        <ModeBox mode='Nuage de verbes' />
+        <ModeBox mode={conjText.nuageDeVerbe} />
         <div className="text-center pb-2">
           {listVerbeNuage}
         </div>

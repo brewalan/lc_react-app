@@ -9,7 +9,12 @@ class ConjAPI {
 
     /* retrieve verbe history */
     getHistoryVerbe() {
-        return this.historyVerbe;
+        return this.historyVerbe.slice(-10).reverse();
+    }
+
+    /* delete verbe history */
+    resetHistoryVerbe() {
+        this.historyVerbe = [];
     }
 
     /* charge le cache initial */
