@@ -6,7 +6,8 @@ import ProposeVerbe from './conjugaison/ProposeVerbe';
 import NuageVerbeReact from './nuage/NuageVerbeReact';
 import HistoryVerbeReact from './nuage/HistoryVerbeReact';
 import { defaultVbConjug } from '../features/DefaultVbConj';
-import { conjText, iconList } from '../features/ConjIcon';
+import { conjText } from '../features/ConjIcon';
+import ButtonList from './bouton/ButtonList';
 
 
 
@@ -21,33 +22,96 @@ class VerbeInput extends React.Component {
           loading: false,
           value: '',
           vbConjug: defaultVbConjug,
+          requestFeminin: false,
+          param: '',
           nuageValue: nuage,
           historyVerbe: []
         };
-    
+        
+        /* manage the event */
+        this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleVerbePropose = this.handleVerbePropose.bind(this);
         this.handleResetVerbeHistory = this.handleResetVerbeHistory.bind(this);
+        this.handleRequestFeminin = this.handleRequestFeminin.bind(this);
+        this.handleRequestQuestion = this.handleRequestQuestion.bind(this);
+        this.handleRequestNegation = this.handleRequestNegation.bind(this);
+
       }
 
+      generateParam() {
+        let parametre="";
+        if (this.state.requestFeminin)
+          parametre+="F";
+        this.setState({param: parametre});
+        console.log(this.state);
+      }
+
+      generateParametre(param) {
+        let parametre = "";
+        if (param.feminin) parametre+="F";
+        if (param.question) parametre+="Q";
+        if (param.negation) parametre+="N";
+        if (param.pronominal) parametre+="P";
+        return parametre;
+      } 
+
+      /***** button parameter click *****/
+      handleRequestFeminin(feminin) {
+        const vb = this.state.vbConjug.verbe;
+        let param = Object.assign({}, this.state.vbConjug.parametre);
+        param.feminin=feminin;
+        this.loadVerbe(vb,this.generateParametre(param));    
+      }
+
+      handleRequestQuestion(question) {
+        const vb = this.state.vbConjug.verbe;
+        let param = Object.assign({}, this.state.vbConjug.parametre);
+        param.question=question;
+        this.loadVerbe(vb,this.generateParametre(param));    
+      }      
+
+      handleRequestNegation(negation) {
+        const vb = this.state.vbConjug.verbe;
+        let param = Object.assign({}, this.state.vbConjug.parametre);
+        param.negation=negation;
+        this.loadVerbe(vb,this.generateParametre(param));    
+      }      
+
+      /***** other events *******/
       /* when typing text in the input */
       handleChange(event) {
         this.setState({value: event.target.value});
+        this.generateParam();
+        const vb = this.state.value;
+        const param = this.state.param;
+        this.loadVerbe(vb,param);
       }
+
+      /* check if typing enter */
+      handleKeyDown(event) {
+        const key=event.code;
+        if (key === "Enter") {
+          this.handleClick(event);
+        } else if (key === "Escape") {
+          this.setState({value: ""});
+        }
+      }      
     
       /* when click on conjuguer button */
       handleClick(e) {
         e.preventDefault();
         const vb = this.state.value;
-        this.loadVerbe(vb);
+        const param = this.state.param;
+        this.loadVerbe(vb,param);
         this.inputVerbe.focus();
       };  
       
       /* when clicking on a proposal verb or a nuage verb */
       handleVerbePropose(vb) {
         this.setState({value: vb});
-        this.loadVerbe(vb);
+        this.loadVerbe(vb,this.state.param);
       }
 
       /* delete verbe history */
@@ -57,12 +121,12 @@ class VerbeInput extends React.Component {
       }
 
       /* start to load a new verb and update the screen */
-      loadVerbe(vb) {
+      loadVerbe(vb,param) {
         if (vb==="") return;
         this.setState({
             loading: true
         }, () => {
-            conjAPI.getVerbeInfo(vb)
+            conjAPI.getVerbeInfo(vb,param)
             .then(info => {
               this.setState({loading: false});
               this.setState({vbConjug: info});
@@ -79,26 +143,6 @@ class VerbeInput extends React.Component {
       }  
      
 
-      /* create the different button */
-      renderButtonList() {
-        return (
-            <React.Fragment>
-              <div className="btn-group" role="group">
-                <input type="radio" cmass="btn-check" name="btnradio" id="btnMasculin" autocomplete="off" checked />
-                <label className="btn btn-outline-primary" for="btnMasculin">
-                  {iconList.iconMasculin}
-                </label>  
-
-                <input type="radio" cmass="btn-check" name="btnradio" id="btnFeminin" autocomplete="off" />
-                <label className="btn btn-outline-primary" for="btnFeminin">
-                  {iconList.iconFeminin}
-                </label>  
-
-              </div>
-            </React.Fragment>     
-        );
-      }
-
       /* render main page of conjugaison : 
       - input bar 
       - propose
@@ -108,7 +152,7 @@ class VerbeInput extends React.Component {
         return (
             <React.Fragment>
             <div className="row py-2">
-              <section className="col-12 col-md-8">              
+              <section className="col-12 col-md-8 col-lg-9">              
               <div className="input-group mb-3 mx-auto">
                 <span className="input-group-text" id="basic-addon1">
                   <i className="fa-duotone fa-magnifying-glass fa-2x"></i>
@@ -120,6 +164,7 @@ class VerbeInput extends React.Component {
                   type="text"
                   placeholder={conjText.vbAConjuguer} 
                   value={this.state.value} 
+                  onKeyDown={this.handleKeyDown} 
                   onChange={this.handleChange} />
                 <button 
                   className='btn btn-outline-secondary' 
@@ -128,9 +173,12 @@ class VerbeInput extends React.Component {
                     {conjText.btnConjuguer}
                 </button>
               </div>
-              <div>
-                {this.renderButtonList}
-              </div>
+                <ButtonList 
+                  vbConjug={this.state.vbConjug}
+                  onRequestFeminin={this.handleRequestFeminin}
+                  onRequestQuestion={this.handleRequestQuestion}
+                  onRequestNegation={this.handleRequestNegation}
+                />
                 <ProposeVerbe 
                   propose={this.state.vbConjug.caracteristique.propose}  
                   originalVerbe={this.state.vbConjug.parametre.originalVerbe}
@@ -138,7 +186,7 @@ class VerbeInput extends React.Component {
                   onVerbeChange={this.handleVerbePropose} />
                 <ConjugaisonVerbe vbConjug={this.state.vbConjug} />
               </section>
-              <aside className="col-12 col-md-4 bg-light">
+              <aside className="col-12 col-md-4 col-lg-3 bg-light">
                 <HistoryVerbeReact
                   onVerbeChange={this.handleVerbePropose}
                   onResetVerbeHistory={this.handleResetVerbeHistory}

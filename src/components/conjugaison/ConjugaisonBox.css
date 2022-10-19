@@ -1,3 +1,55 @@
 b {
     color: royalblue;
 }
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) { 
+    h5.ConjBox {
+        font-size:0.8em;
+    }
+    p.ConjBox {
+        font-size:0.8em;
+    }
+    h2.ConjBox {
+        font-size:1.1em;
+    }    
+    h1.ConjBox {
+        font-size:1.3em;
+    }    
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 577px) and (max-width: 768px) { 
+   
+    h5.ConjBox {
+        font-size:1em;
+    }
+    p.ConjBox {
+        font-size:1em;
+    }
+    h2.ConjBox {
+        font-size:1.3em;
+    }    
+    h1.ConjBox {
+        font-size:1.5em;
+    }       
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 769px) and (max-width: 992px) {  
+    h5.ConjBox {
+        font-size:0.8em;
+    }
+    p.ConjBox {
+        font-size:0.8em;
+    }
+    h2.ConjBox {
+        font-size:1.1em;
+    }    
+    h1.ConjBox {
+        font-size:1.3em;
+    }       
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 993px) and (max-width: 1200px) {  }
+

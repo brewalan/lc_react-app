@@ -1,0 +1,11 @@
+.fa-venus {
+    color: pink;
+}
+.fa-mars {
+    color: lightblue;
+}
+
+.btn-rotate {
+    color:white;
+    --fa-rotate-angle: 90deg;
+}

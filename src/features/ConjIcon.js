@@ -2,19 +2,22 @@ import React from 'react';
 
 /* icon to be used in the app */
 export const iconList = {
-    iconTrash: <i class="fa-duotone fa-trash fa-2x"></i>,
-    iconFeminin: <i class="fa-solid fa-person-dress fa-2x"></i>,
-    iconMasculin: <i class="fa-solid fa-person fa-2x"></i>,
-    icoPronominal: <i class="fa-duotone fa-arrows-rotate fa-2x"></i>,
-    icoPronominalEn: <i class="fa-duotone fa-rotate-exclamation fa-2x"></i>,
-    icoQuestion: <i class="fa-duotone fa-seal-question fa-2x"></i>,
-    icoNegation: <i class="fa-duotone fa-ban fa-2x"></i>,
-    iconPrint: <i class="fa-regular fa-print fa-2x"></i>,
-    iconWord: <i class="fa-duotone fa-file-word fa-2x"></i>,
-    iconIOS: <i class="fa-brands fa-apple fa-2x"></i>,
-    iconAndroid: <i class="fa-brands fa-android fa-2x"></i>,
-    iconWindows: <i class="fa-brands fa-windows fa-2x"></i>,
-    iconMac: <i class="fa-solid fa-computer-classic fa-2x"></i>
+    iconTrash: <i className="fa-duotone fa-trash fa-2x"></i>,
+    iconFeminin: <i className="fa-solid fa-venus fa-2x"></i>,
+    iconMasculin: <i className="fa-solid fa-mars fa-2x"></i>,
+    icoPronominal: <i className="fa-duotone fa-arrows-rotate fa-2x"></i>,
+    icoPronominalEn: <i className="fa-duotone fa-rotate-exclamation fa-2x"></i>,
+    icoQuestion: <i className="fa-duotone fa-seal-question fa-2x"></i>,
+    icoQuestionActive: <i className="fa-duotone fa-seal-question fa-2x fa-rotate-by btn-rotate"></i>,
+    icoNegation: <i className="fa-duotone fa-ban fa-2x"></i>,
+    icoNegationActive: <i className="fa-duotone fa-ban fa-2x fa-rotate-by btn-rotate"></i>,
+    iconPrint: <i className="fa-regular fa-print fa-2x"></i>,
+    iconWord: <i className="fa-duotone fa-file-word fa-2x"></i>,
+    iconIOS: <i className="fa-brands fa-apple fa-2x"></i>,
+    iconAndroid: <i className="fa-brands fa-android fa-2x"></i>,
+    iconWindows: <i className="fa-brands fa-windows fa-2x"></i>,
+    iconMac: <i className="fa-solid fa-computer-classic fa-2x"></i>,
+    iconGroupe3: <i className='fa-light fa-2x fa-square-3'></i> 
 };
 
 /* détail des modes */
@@ -59,7 +62,7 @@ export const conjTemps = {
 
 /* texts to be used */
 export const conjText = {
-    aideText: "<h3>Bienvenue dans Le Conjuguer React</h3><p>Cette page vous permet de voir les tableaux de conjugaison de tous les verbes.<br>Pour l'utiliser, entrez un verbe dans la zone ci-dessus.<br>Puis, cliquez sur le bouton Conjuguer pour voir le tableau de conjugaison.</p>",
+    aideText: "<h3>Bienvenue dans Le Conjugueur React</h3><p>Cette page vous permet de voir les tableaux de conjugaison de tous les verbes.<br>Cette page utilise la technologie React qui permet de ne mettre à jour que la zone qui a été modifiée. Ceci permet d'avoir une plus grande fluidité dans la mise à joru de la page.<br>Pour visualiser un verbe, entrez un verbe dans la zone ci-dessus.<br>Puis, cliquez sur le bouton Conjuguer pour voir le tableau de conjugaison.</p>",
     conjugaisonVerbe: "Conjugaison du verbe ",
     historique: "Historique",
     nuageDeVerbe: "Nuage de verbes",

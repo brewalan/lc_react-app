@@ -8,8 +8,8 @@ class ConjugaisonBox extends React.Component {
     render() {
       return (
         <div className='col-md-3 col-6'>
-          <h5>{this.props.temps}</h5>
-          <p>{Parser(stripTags(this.props.conjugaison,'<b></b><br>'))}</p>
+          <h5 className='ConjBox'>{this.props.temps}</h5>
+          <p className='ConjBox'>{Parser(stripTags(this.props.conjugaison,'<b></b><br>'))}</p>
         </div>
       );
     }

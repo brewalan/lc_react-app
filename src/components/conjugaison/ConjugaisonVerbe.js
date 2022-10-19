@@ -23,10 +23,11 @@ class ConjugaisonVerbe extends React.Component {
             return (
                 <React.StrictMode>
                     <div id="VerbeConjug">
-                    <h1 className='text-center bg-primary text-white py-3'>
+                        <h1 className='ConjBox text-center bg-primary text-white py-3'>
                             {conjText.conjugaisonVerbe} {info.verbe}
-                    </h1>
-                    <p className="align-middle">
+                        </h1>
+
+                    <p className="ConjBox text-center">
                         {Parser(formateGroupe(info.caracteristique.groupe))}
                     </p>
                 {/* Indicatif */}
@@ -86,7 +87,7 @@ class ConjugaisonVerbe extends React.Component {
                     {/* Règle */}
                     {this.renderModeBox(conjMode.regle)}
                     <div className='row'>
-                        <p>
+                        <p className='ConjBox'>
                             {info.regle}
                         </p>
                     </div>          

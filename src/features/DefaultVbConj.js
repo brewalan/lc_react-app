@@ -1,5 +1,7 @@
 /* default API return with blank data */
 export const defaultVbConjug = {
+    "key":"",
+    "genDate":0,
     "verbe":"",
     "parametre":{
       "originalVerbe":"",

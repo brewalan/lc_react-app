@@ -4,7 +4,7 @@ import React from 'react';
 class ModeBox extends React.Component {
     render() {
       return (
-        <h2 className='bg-primary text-white p-2'>{this.props.mode}</h2>
+        <h2 className='ConjBox bg-primary text-white p-2'>{this.props.mode}</h2>
       );
     }
   }
