@@ -37,15 +37,12 @@ class VerbeInput extends React.Component {
         this.handleRequestFeminin = this.handleRequestFeminin.bind(this);
         this.handleRequestQuestion = this.handleRequestQuestion.bind(this);
         this.handleRequestNegation = this.handleRequestNegation.bind(this);
+        this.handleRequestPronominal = this.handleRequestPronominal.bind(this);
+        this.handleRequestPronominalEn = this.handleRequestPronominalEn.bind(this);
+        this.handleRequestPassif = this.handleRequestPassif.bind(this);
+        this.handleRequestAuxiEtre = this.handleRequestAuxiEtre.bind(this);
+        this.handleRequestAuxiAvoir = this.handleRequestAuxiAvoir.bind(this);
 
-      }
-
-      generateParam() {
-        let parametre="";
-        if (this.state.requestFeminin)
-          parametre+="F";
-        this.setState({param: parametre});
-        console.log(this.state);
       }
 
       generateParametre(param) {
@@ -54,39 +51,77 @@ class VerbeInput extends React.Component {
         if (param.question) parametre+="Q";
         if (param.negation) parametre+="N";
         if (param.pronominal) parametre+="P";
+        if (param.pronominalEn) parametre+="K";
+        if (param.passif) parametre+="S";
+        if (param.auxiEtre) parametre+="E";
+        if (param.auxiAvoir) parametre+="A";
         return parametre;
       } 
 
       /***** button parameter click *****/
       handleRequestFeminin(feminin) {
-        const vb = this.state.vbConjug.verbe;
+        const vb = this.state.vbConjug.parametre.originalVerbe;
         let param = Object.assign({}, this.state.vbConjug.parametre);
         param.feminin=feminin;
         this.loadVerbe(vb,this.generateParametre(param));    
       }
 
       handleRequestQuestion(question) {
-        const vb = this.state.vbConjug.verbe;
+        const vb = this.state.vbConjug.parametre.originalVerbe;
         let param = Object.assign({}, this.state.vbConjug.parametre);
         param.question=question;
         this.loadVerbe(vb,this.generateParametre(param));    
       }      
 
       handleRequestNegation(negation) {
-        const vb = this.state.vbConjug.verbe;
+        const vb = this.state.vbConjug.parametre.originalVerbe;
         let param = Object.assign({}, this.state.vbConjug.parametre);
         param.negation=negation;
         this.loadVerbe(vb,this.generateParametre(param));    
       }      
 
+      handleRequestPronominal(pronominal) {
+        const vb = this.state.vbConjug.parametre.originalVerbe;
+        let param = Object.assign({}, this.state.vbConjug.parametre);
+        param.pronominal=pronominal;
+        this.loadVerbe(vb,this.generateParametre(param));    
+      }        
+
+      handleRequestPronominalEn(pronominalEn) {
+        const vb = this.state.vbConjug.parametre.originalVerbe;
+        let param = Object.assign({}, this.state.vbConjug.parametre);
+        param.pronominalEn=pronominalEn;
+        this.loadVerbe(vb,this.generateParametre(param));    
+      }        
+
+      handleRequestPassif(passif) {
+        const vb = this.state.vbConjug.parametre.originalVerbe;
+        let param = Object.assign({}, this.state.vbConjug.parametre);
+        param.passif=passif;
+        this.loadVerbe(vb,this.generateParametre(param));    
+      }        
+
+      handleRequestAuxiEtre(auxiEtre) {
+        const vb = this.state.vbConjug.parametre.originalVerbe;
+        let param = Object.assign({}, this.state.vbConjug.parametre);
+        param.auxiEtre=auxiEtre;
+        this.loadVerbe(vb,this.generateParametre(param));    
+      }        
+
+      handleRequestAuxiAvoir(auxiAvoir) {
+        const vb = this.state.vbConjug.parametre.originalVerbe;
+        let param = Object.assign({}, this.state.vbConjug.parametre);
+        param.auxiAvoir=auxiAvoir;
+        this.loadVerbe(vb,this.generateParametre(param));    
+      }        
+
       /***** other events *******/
       /* when typing text in the input */
       handleChange(event) {
         this.setState({value: event.target.value});
-        this.generateParam();
         const vb = this.state.value;
         const param = this.state.param;
-        this.loadVerbe(vb,param);
+        //this.loadVerbe(vb,param);
       }
 
       /* check if typing enter */
@@ -178,6 +213,11 @@ class VerbeInput extends React.Component {
                   onRequestFeminin={this.handleRequestFeminin}
                   onRequestQuestion={this.handleRequestQuestion}
                   onRequestNegation={this.handleRequestNegation}
+                  onRequestPronominal={this.handleRequestPronominal}
+                  onRequestPronominalEn={this.handleRequestPronominalEn}
+                  onRequestPassif={this.handleRequestPassif}
+                  onRequestAuxiEtre={this.handleRequestAuxiEtre}
+                  onRequestAuxiAvoir={this.handleRequestAuxiAvoir}
                 />
                 <ProposeVerbe 
                   propose={this.state.vbConjug.caracteristique.propose}  
