@@ -13,7 +13,8 @@ export const defaultVbConjug = {
       "auxiEtre":false,
       "auxiAvoir":false,
       "pronominal":false,
-      "pronominalEn":false},
+      "pronominalEn":false,
+      "forme2":false},
     "caracteristique":{
       "existe":false,
       "propose":[],
@@ -24,6 +25,7 @@ export const defaultVbConjug = {
       "autoriseAuxiEtre":false,
       "autorisePronominal":true,
       "autorisePronominalEn":false,
+      "autoriseForme2":false,
       "auxiliaire":0},
     "conjugaison":{
       "IND_P":"",
@@ -49,7 +51,8 @@ export const defaultVbConjug = {
       "INF_PP":"",
       "GER_P":"",
       "FUTUR_PROCHE":"",
-      "PASSE_PROCHE":""},
+      "PASSE_PROCHE":"",
+      "caracteristique":""},
       "similaire":[],
       "regle":"",
       "synonyme":[]

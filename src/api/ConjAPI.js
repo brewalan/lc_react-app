@@ -39,6 +39,8 @@ class ConjAPI {
             // add in history
             this.historyVerbe.push(vb);
 
+            console.log(vb+param);
+            
             //check in cache
             const cache = this.getVerbeFromCache(vb+param);
             if (typeof cache !== 'undefined') {

@@ -8,6 +8,7 @@ import HistoryVerbeReact from './nuage/HistoryVerbeReact';
 import { defaultVbConjug } from '../features/DefaultVbConj';
 import { conjText } from '../features/ConjIcon';
 import ButtonList from './bouton/ButtonList';
+import LogicielBox from './bouton/LogicielBox';
 
 
 
@@ -42,6 +43,7 @@ class VerbeInput extends React.Component {
         this.handleRequestPassif = this.handleRequestPassif.bind(this);
         this.handleRequestAuxiEtre = this.handleRequestAuxiEtre.bind(this);
         this.handleRequestAuxiAvoir = this.handleRequestAuxiAvoir.bind(this);
+        this.handleRequestForme2 = this.handleRequestForme2.bind(this);
 
       }
 
@@ -55,6 +57,8 @@ class VerbeInput extends React.Component {
         if (param.passif) parametre+="S";
         if (param.auxiEtre) parametre+="E";
         if (param.auxiAvoir) parametre+="A";
+        if (param.auxiAvoir) parametre+="A";        
+        if (param.forme2) parametre+="2";        
         return parametre;
       } 
 
@@ -105,6 +109,7 @@ class VerbeInput extends React.Component {
         const vb = this.state.vbConjug.parametre.originalVerbe;
         let param = Object.assign({}, this.state.vbConjug.parametre);
         param.auxiEtre=auxiEtre;
+        param.auxiAvoir=!auxiEtre;
         this.loadVerbe(vb,this.generateParametre(param));    
       }        
 
@@ -112,8 +117,17 @@ class VerbeInput extends React.Component {
         const vb = this.state.vbConjug.parametre.originalVerbe;
         let param = Object.assign({}, this.state.vbConjug.parametre);
         param.auxiAvoir=auxiAvoir;
+        param.auxiEtre=!auxiAvoir;
         this.loadVerbe(vb,this.generateParametre(param));    
-      }        
+      }  
+      
+      handleRequestForme2(forme2) {
+        const vb = this.state.vbConjug.parametre.originalVerbe;
+        let param = Object.assign({}, this.state.vbConjug.parametre);
+        param.forme2=forme2;
+        this.loadVerbe(vb,this.generateParametre(param));    
+      }      
+      
 
       /***** other events *******/
       /* when typing text in the input */
@@ -218,6 +232,7 @@ class VerbeInput extends React.Component {
                   onRequestPassif={this.handleRequestPassif}
                   onRequestAuxiEtre={this.handleRequestAuxiEtre}
                   onRequestAuxiAvoir={this.handleRequestAuxiAvoir}
+                  onRequestForme2={this.handleRequestForme2}
                 />
                 <ProposeVerbe 
                   propose={this.state.vbConjug.caracteristique.propose}  
@@ -234,6 +249,7 @@ class VerbeInput extends React.Component {
                 <NuageVerbeReact 
                   onVerbeChange={this.handleVerbePropose}
                   nuageValue={this.state.nuageValue}  />
+                <LogicielBox />
               </aside>
             </div>
           </React.Fragment>

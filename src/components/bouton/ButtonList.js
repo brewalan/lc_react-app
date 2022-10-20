@@ -15,6 +15,7 @@ class ButtonList extends React.Component {
         this.handleRequestPassif = this.handleRequestPassif.bind(this);
         this.handleRequestAuxiEtre = this.handleRequestAuxiEtre.bind(this);
         this.handleRequestAuxiAvoir = this.handleRequestAuxiAvoir.bind(this);
+        this.handleRequestForme2 = this.handleRequestForme2.bind(this);
       }
     
       handleRequestFeminin(event) {
@@ -48,6 +49,9 @@ class ButtonList extends React.Component {
       handleRequestAuxiAvoir(event) {
         this.props.onRequestAuxiAvoir((!this.props.vbConjug.parametre.auxiAvoir));
       }
+      handleRequestForme2(event) {
+        this.props.onRequestForme2((!this.props.vbConjug.parametre.forme2));
+      }
 
     render() {
       const info = this.props.vbConjug;
@@ -66,12 +70,13 @@ class ButtonList extends React.Component {
               >
               <input type="radio" 
                 className="btn-check" 
-                name="btnRadioGenre" 
+                name="btnRadioGenreMasculin" 
                 id="btnradio1" 
                 autoComplete="off" 
                 value="masculin"
                 disabled={!info.caracteristique.autoriseFeminin}                 
                 checked={!info.parametre.feminin}
+                title={conjText.toolTipMasculin}    
                 onChange = {this.handleRequestFeminin}
                 />
               <label className="btn btn-outline-primary"
@@ -81,12 +86,13 @@ class ButtonList extends React.Component {
 
               <input type="radio" 
                 className="btn-check" 
-                name="btnRadioGenre" 
+                name="btnRadioGenreFeminin" 
                 id="btnradio2" 
                 autoComplete="off" 
                 value="feminin"
                 disabled={!info.caracteristique.autoriseFeminin}
                 checked={info.parametre.feminin}
+                title={conjText.toolTipFeminin}    
                 onChange = {this.handleRequestFeminin}
                 />
               <label className="btn btn-outline-primary" 
@@ -94,6 +100,17 @@ class ButtonList extends React.Component {
                   {iconList.iconFeminin}
               </label>
             </div>
+
+            <button type="button" 
+                className='btn btn-info'
+                title={conjText.toolTipForme2}    
+                onClick = {this.handleRequestForme2}
+                disabled={!info.caracteristique.autoriseForme2}             
+                >
+                  {info.parametre.forme2 ? iconList.iconForme1 : iconList.iconForme2}
+              </button>
+
+
             
             <div className='vr'></div>
 
@@ -103,6 +120,7 @@ class ButtonList extends React.Component {
                 data-bs-toggle="button"
                 aria-pressed={info.parametre.question}
                 autoComplete="off"
+                title={conjText.toolTipQuestion}    
                 onClick = {this.handleRequestQuestion}
                 >
                   {info.parametre.question ? iconList.icoQuestionActive : iconList.icoQuestion}
@@ -113,6 +131,7 @@ class ButtonList extends React.Component {
                 data-bs-toggle="button"
                 aria-pressed={info.parametre.negation}
                 autoComplete="off"
+                title={conjText.toolTipNegation}    
                 onClick = {this.handleRequestNegation}
                 >
                   {info.parametre.negation ? iconList.icoNegationActive : iconList.icoNegation}
@@ -121,7 +140,7 @@ class ButtonList extends React.Component {
 
             <div className='vr'></div>
 
-            <div className="border">
+            <div className="">
               <button type="button" 
                 className='btn btn-warning {info.parametre.pronominal ? "active" : ""}'
                 data-bs-toggle="button tooltip"
@@ -134,8 +153,6 @@ class ButtonList extends React.Component {
                 >
                   {info.parametre.pronominal ? iconList.icoPronominalActive : iconList.icoPronominal}
               </button>
-            </div>   
-            <div className="">
               <button type="button" 
                 className='btn btn-warning {info.parametre.pronominalEn ? "active" : ""}'
                 data-bs-toggle="button tooltip"
@@ -148,7 +165,64 @@ class ButtonList extends React.Component {
                 >
                   {info.parametre.pronominalEn ? iconList.icoPronominalEnActive : iconList.icoPronominalEn}
               </button>
-            </div>                        
+            </div>    
+            <div>
+              <button type="button" 
+                className='btn btn-info {info.parametre.passif ? "active" : ""}'
+                data-bs-toggle="button"
+                aria-pressed={info.parametre.passif}
+                autoComplete="off"
+                onClick = {this.handleRequestPassif}
+                disabled={!info.caracteristique.autorisePassif}             
+                title={conjText.toolTipPassif}    
+                >
+                  {info.parametre.passif ? iconList.icoPassifActive : iconList.icoPassif}
+              </button>
+            </div>                    
+
+
+
+
+            <div className='vr'></div>
+
+            <div className="btn-group" 
+              role="group" 
+              aria-label="Auxiliaire"
+              >
+              <input type="radio" 
+                className="btn-check" 
+                name="btnRadioAuxiEtre" 
+                id="btnradio11" 
+                autoComplete="off" 
+                value="masculin"
+                disabled={!info.caracteristique.autoriseAuxiEtre}                 
+                checked={info.parametre.auxiAvoir}
+                title={conjText.toolTipAuxiAvoir}    
+                onChange = {this.handleRequestAuxiAvoir}
+                />
+              <label className="btn btn-outline-primary"
+                htmlFor="btnradio11">
+                  {conjText.auxiAvoir}
+              </label>
+
+              <input type="radio" 
+                className="btn-check" 
+                name="btnRadioAuxiAvoir" 
+                id="btnradio22" 
+                autoComplete="off" 
+                value="feminin"
+                disabled={!info.caracteristique.autoriseAuxiEtre}
+                checked={info.parametre.auxiEtre}
+                title={conjText.toolTipAuxiEtre}    
+                onChange = {this.handleRequestAuxiEtre}
+                />
+              <label className="btn btn-outline-primary" 
+                htmlFor="btnradio22">
+                  {conjText.auxiEtre}
+              </label>
+            </div>
+
+
 
             <div className='ms-auto'>
 

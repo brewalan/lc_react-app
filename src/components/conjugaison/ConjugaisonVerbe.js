@@ -4,6 +4,7 @@ import ModeBox from './ModeBox';
 import Parser from 'html-react-parser'
 import { conjText,conjMode,conjTemps } from '../../features/ConjIcon';
 import { formateGroupe } from '../../features/ConjConstante';
+import InfoVerbe from './InfoVerbe';
 
 /* display conjugaison */
 class ConjugaisonVerbe extends React.Component {
@@ -27,9 +28,7 @@ class ConjugaisonVerbe extends React.Component {
                             {conjText.conjugaisonVerbe} {info.verbe}
                         </h1>
 
-                    <p className="ConjBox text-center">
-                        {Parser(formateGroupe(info.caracteristique.groupe))}
-                    </p>
+                    <InfoVerbe info={info}/>
                 {/* Indicatif */}
                     {this.renderModeBox(conjMode.indicatif)}
                     <div className='row'>
@@ -90,7 +89,29 @@ class ConjugaisonVerbe extends React.Component {
                         <p className='ConjBox'>
                             {info.regle}
                         </p>
+                    </div>         
+                    {/* emploi */}
+                    {this.renderModeBox(conjMode.emploi)}
+                    <div className='row'>
+                        <p className='ConjBox'>
+                            {info.conjugaison.caracteristique}
+                        </p>
                     </div>          
+                    {/* Impératif & participe */}
+                    <div className='row'>
+                    <div className='col-6'>
+                        {this.renderModeBox(conjMode.tournure)}
+                    </div>
+                    <div className='col-6'>
+                        {this.renderModeBox(conjMode.gerondif)}
+                    </div>
+                    </div>
+                    <div className='row'>
+                    {this.renderConjugaisonBox(conjTemps.FUTUR_PROCHE,info.conjugaison.FUTUR_PROCHE)}
+                    {this.renderConjugaisonBox(conjTemps.PASSE_PROCHE,info.conjugaison.PASSE_PROCHE)}
+                    {this.renderConjugaisonBox(conjTemps.GER_P,info.conjugaison.GER_P)}
+                    {this.renderConjugaisonBox(conjTemps.GER_PP,info.conjugaison.GER_PP)}
+                    </div>                                                                                                
 
                 </div>                  
                 </React.StrictMode>

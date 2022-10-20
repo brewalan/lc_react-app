@@ -21,7 +21,13 @@ export const iconList = {
     iconAndroid: <i className="fa-brands fa-android fa-2x"></i>,
     iconWindows: <i className="fa-brands fa-windows fa-2x"></i>,
     iconMac: <i className="fa-solid fa-computer-classic fa-2x"></i>,
-    iconGroupe3: <i className='fa-light fa-2x fa-square-3'></i> 
+    iconGroupe0: "", 
+    iconGroupe4: "", 
+    iconGroupe1: <i className='fa-light fa-3x fa-square-1'></i>, 
+    iconGroupe2: <i className='fa-light fa-3x fa-square-2'></i>, 
+    iconGroupe3: <i className='fa-light fa-3x fa-square-3'></i>,
+    iconForme2:  <i className="fa-duotone fa-forward fa-2x"></i>,
+    iconForme1:  <i className="fa-duotone fa-backward fa-2x"></i>,
 };
 
 /* détail des modes */
@@ -32,7 +38,11 @@ export const conjMode = {
     imperatif: "Impératif",
     participe: "Participe",
     infinitif: "Infinitif",
-    regle: "Note sur le verbe"
+    gerondif: "Gérondif",
+    regle: "Note sur le verbe",
+    tournure: "Tournure de phrase",
+    emploi: "Emploi du verbe",
+    synonyme: "Synonyme du verbe"
 };
 
 /* texte des temps */
@@ -60,6 +70,8 @@ export const conjTemps = {
     GER_PP: "Passé",
     PART_PR: "Présent",
     PART_ALL: "Passé",
+    FUTUR_PROCHE: "Futur proche",
+    PASSE_PROCHE: "Passé proche",
     AUCUN: ""
 };
 
@@ -84,6 +96,23 @@ export const conjText = {
     toolTipPronominalEn: "Forme avec s'en",
     toolTipPassif: "Voix passive",
     toolTipPrint: "Imprimer le verbe",
-    toolTipRtf: "EXporter en RTF vers Word"
+    toolTipRtf: "Exporter en RTF vers Word",
+    toolTipForme2: "Autre forme de conjugaison",
+    auxiAvoir: "avoir",
+    auxiEtre: "être",
+    logiciel: "Autre logiciel",
+    logicielTxt: "Le Conjugueur existe également sur les magasins d'applications officiels pour iOS, Android, Mac et Windows. Conjuguez même hors-connexion.",
+    logicielIOS: "https://itunes.apple.com/fr/app/le-conjugueur/id356994010?mt=8",
+    logicielAndroid: "https://market.android.com/details?id=com.leconjugueur.droid",
+    logicielMac: "https://itunes.apple.com/fr/app/le-conjugueur-conjugaison/id402968263?mt=12&ls=1",
+    logicielWindows: "https://www.microsoft.com/store/apps/9wzdncrdmm29",
+    groupe0: "Aucun groupe",
+    groupe1: "Verbe du premier groupe",
+    groupe2: "Verbe du deuxième groupe",
+    groupe3: "Verbe du troisième groupe",
+    groupe4: "Auxiliaire",
+    infoAuxiliaireAvoir: "Le verbe se conjugue avec l'auxiliaire avoir", 
+    infoAuxiliaireEtre: "Le verbe se conjugue avec l'auxiliaire être", 
+    infoAuxiliaireAvoirEtre: "Le verbe se conjugue avec les auxiliaires avoir ou être", 
 }
 
