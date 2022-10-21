@@ -14,6 +14,7 @@ export const defaultVbConjug = {
       "auxiAvoir":false,
       "pronominal":false,
       "pronominalEn":false,
+      "censure":false,
       "forme2":false},
     "caracteristique":{
       "existe":false,

@@ -1,10 +1,12 @@
+import { array_unique } from "../utils/array_unique";
+
 /* Get the verb cache and store it for better performance */
 class ConjAPI {
     cacheVerbe = [];
     historyVerbe = [];
 
     constructor() {
-        //this.loadCache();
+        this.loadCache();
     }
 
     /* retrieve verbe history */
@@ -17,13 +19,30 @@ class ConjAPI {
         this.historyVerbe = [];
     }
 
+    /* save cache locally */
+    saveCache() {
+        localStorage.setItem("LCREACT-CACHE", JSON.stringify(this.cacheVerbe));    
+    }
+
+    /* delete all cache */
+    clearCache() {
+        this.cacheVerbe=[];
+        localStorage.removeItem("LCREACT-CACHE");
+    }
+
     /* charge le cache initial */
     loadCache() {
+        if (localStorage.hasOwnProperty('LCREACT-CACHE')) {
+            this.cacheVerbe = JSON.parse(localStorage.getItem('LCREACT-CACHE'));
+            return;
+        }
+
         const urlVb='https://leconjugueur.lefigaro.fr/php5/api.php?v=gencache'
             fetch(urlVb)
             .then(results => results.json())
             .then(info => {
                 this.cacheVerbe=info;
+                this.saveCache();
               })
             .catch(console.log);   
     }
@@ -38,6 +57,7 @@ class ConjAPI {
         return new Promise((resolve,reject) => {
             // add in history
             this.historyVerbe.push(vb);
+            this.historyVerbe=array_unique(this.historyVerbe);
 
             console.log(vb+param);
             
@@ -55,7 +75,10 @@ class ConjAPI {
                     .then(results => results.json())
                     .then(info => {
                         //add in cache
-                        this.cacheVerbe.push(info);
+                        if (!info.parametre.censure) {
+                            this.cacheVerbe.push(info);
+                            this.saveCache();
+                        }
                         console.log("from server");
                         //return result
                         resolve(info);

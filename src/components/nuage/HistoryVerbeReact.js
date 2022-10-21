@@ -26,7 +26,7 @@ class HistoryVerbeReact extends React.Component {
   /* display the historical verbs */
   render() {
     if (this.props.historyValue.length===0) return;
-    var index = 0;
+    let index = 0;
 
     const total = this.props.historyValue.length; 
     const listVerbeHistory = this.props.historyValue.map((element) => {

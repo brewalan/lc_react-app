@@ -3,7 +3,6 @@ import ConjugaisonBox from './ConjugaisonBox';
 import ModeBox from './ModeBox';
 import Parser from 'html-react-parser'
 import { conjText,conjMode,conjTemps } from '../../features/ConjIcon';
-import { formateGroupe } from '../../features/ConjConstante';
 import InfoVerbe from './InfoVerbe';
 
 /* display conjugaison */

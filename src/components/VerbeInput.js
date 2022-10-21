@@ -2,7 +2,8 @@ import React from 'react';
 import './VerbeInput.css'
 import { conjAPI, nuage } from '..';
 import ConjugaisonVerbe from './conjugaison/ConjugaisonVerbe';
-import ProposeVerbe from './conjugaison/ProposeVerbe';
+import ProposeVerbe from './proposition/ProposeVerbe';
+import ProposeConjTypo from './proposition/ProposeConjTypo';
 import NuageVerbeReact from './nuage/NuageVerbeReact';
 import HistoryVerbeReact from './nuage/HistoryVerbeReact';
 import { defaultVbConjug } from '../features/DefaultVbConj';
@@ -133,9 +134,6 @@ class VerbeInput extends React.Component {
       /* when typing text in the input */
       handleChange(event) {
         this.setState({value: event.target.value});
-        const vb = this.state.value;
-        const param = this.state.param;
-        //this.loadVerbe(vb,param);
       }
 
       /* check if typing enter */
@@ -155,11 +153,12 @@ class VerbeInput extends React.Component {
         const param = this.state.param;
         this.loadVerbe(vb,param);
         this.inputVerbe.focus();
+        this.setState({value: ""});
       };  
       
       /* when clicking on a proposal verb or a nuage verb */
       handleVerbePropose(vb) {
-        this.setState({value: vb});
+        this.setState({value: ""});
         this.loadVerbe(vb,this.state.param);
       }
 
@@ -171,7 +170,14 @@ class VerbeInput extends React.Component {
 
       /* start to load a new verb and update the screen */
       loadVerbe(vb,param) {
+        /* nothing if verb is empty */
         if (vb==="") return;
+        /* check clear cache */
+        if (vb=="/clear") {
+          conjAPI.clearCache();          
+          return;
+        }
+        /* load the verb */
         this.setState({
             loading: true
         }, () => {
@@ -234,6 +240,9 @@ class VerbeInput extends React.Component {
                   onRequestAuxiAvoir={this.handleRequestAuxiAvoir}
                   onRequestForme2={this.handleRequestForme2}
                 />
+                <ProposeConjTypo
+                  typoVerbe={this.state.value}
+                  onVerbeChange={this.handleVerbePropose} />
                 <ProposeVerbe 
                   propose={this.state.vbConjug.caracteristique.propose}  
                   originalVerbe={this.state.vbConjug.parametre.originalVerbe}

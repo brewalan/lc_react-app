@@ -5,10 +5,12 @@ import VerbeInput from './components/VerbeInput'
 import reportWebVitals from './example/reportWebVitals';
 import NuageVerbeGenerator from './features/NuageVerbeGenerator';
 import ConjAPI from './api/ConjAPI';
+import ConjTypo from './api/ConjTypo';
 
 /* generate the verb cloud */
 export const nuage = new NuageVerbeGenerator().getNuageVerbe();
 export const conjAPI = new ConjAPI();
+export const conjTypo = new ConjTypo();
 
 /* start the React program */
 const verbeInput = ReactDOM.createRoot(document.getElementById('root'));

@@ -78,7 +78,7 @@ export const conjTemps = {
 
 /* texts to be used */
 export const conjText = {
-    aideText: "<h3>Bienvenue dans Le Conjugueur React</h3><p>Cette page vous permet de voir les tableaux de conjugaison de tous les verbes.<br>Cette page utilise la technologie React qui permet de ne mettre à jour que la zone qui a été modifiée. Ceci permet d'avoir une plus grande fluidité dans la mise à joru de la page.<br>Pour visualiser un verbe, entrez un verbe dans la zone ci-dessus.<br>Puis, cliquez sur le bouton Conjuguer pour voir le tableau de conjugaison.</p>",
+    aideText: "<h3>Bienvenue dans Le Conjugueur React</h3><p>Cette page vous permet de voir les tableaux de conjugaison de tous les verbes.<br>Cette page utilise la technologie React qui permet de ne mettre à jour que la zone qui a été modifiée. Ceci permet d'avoir une plus grande fluidité dans la mise à jour de la page.<br>Pour visualiser un verbe, entrez un verbe dans la zone ci-dessus.<br>Puis, cliquez sur le bouton Conjuguer pour voir le tableau de conjugaison.</p>",
     conjugaisonVerbe: "Conjugaison du verbe ",
     historique: "Historique",
     nuageDeVerbe: "Nuage de verbes",
@@ -97,7 +97,9 @@ export const conjText = {
     toolTipPassif: "Voix passive",
     toolTipPrint: "Imprimer le verbe",
     toolTipRtf: "Exporter en RTF vers Word",
-    toolTipForme2: "Autre forme de conjugaison",
+    toolTipForme2: "Deuxième forme de conjugaison",
+    toolTipAuxiAvoir: "Auxiliaire avoir",
+    toolTipAuxiEtre: "Auxiliaire être",
     auxiAvoir: "avoir",
     auxiEtre: "être",
     logiciel: "Autre logiciel",
@@ -114,5 +116,6 @@ export const conjText = {
     infoAuxiliaireAvoir: "Le verbe se conjugue avec l'auxiliaire avoir", 
     infoAuxiliaireEtre: "Le verbe se conjugue avec l'auxiliaire être", 
     infoAuxiliaireAvoirEtre: "Le verbe se conjugue avec les auxiliaires avoir ou être", 
+    proposeConjTypo: "Verbes proposés à la conjugaison :"
 }
 

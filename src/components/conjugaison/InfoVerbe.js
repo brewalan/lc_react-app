@@ -32,7 +32,6 @@ class InfoVerbe extends React.Component {
                 ;
         }
         /* information de l'auxiliaire */
-        console.log(this.props.info.auxiliaire);
         let infoAuxiliaire;
         switch (this.props.info.caracteristique.auxiliaire) {
             case 0:
@@ -47,13 +46,26 @@ class InfoVerbe extends React.Component {
             default:
                 ;
             }
+        /* affiche les infos de conjugaison */
+        const defaultInfo = " - Paramètres : ";
+        let vbInfo = defaultInfo;
+        vbInfo+=(this.props.info.parametre.feminin) ? conjText.toolTipFeminin+" - " : "";
+        vbInfo+=(this.props.info.parametre.pronominal) ? conjText.toolTipPronominal+" - " : "";
+        vbInfo+=(this.props.info.parametre.question) ? conjText.toolTipQuestion+" - " : "";
+        vbInfo+=(this.props.info.parametre.negation) ? conjText.toolTipNegation+" - " : "";
+        vbInfo+=(this.props.info.parametre.auxiEtre) ? conjText.toolTipAuxiEtre+" - " : "";
+        vbInfo+=(this.props.info.parametre.auxiAvoir) ? conjText.toolTipAuxiAvoir+" - " : "";
+        vbInfo+=(this.props.info.parametre.passif) ? conjText.toolTipPassif+" - " : "";
+        vbInfo+=(this.props.info.parametre.forme2) ? conjText.toolTipForme2+" - " : "";        
+        vbInfo = (vbInfo === defaultInfo) ? "" : vbInfo.slice(0,-3);
+        
       return (
         <React.Fragment>
             <div className="pb-2 hstack gap-2">
                 <div>
                     <p className="ConjBox">
-                        {groupText}<br />
-                        {infoAuxiliaire}
+                        {groupText} {vbInfo}<br />
+                        {infoAuxiliaire}<br />                        
                     </p>
                 </div>
                 <div className='ms-auto'>
