@@ -28,6 +28,7 @@ export const iconList = {
     iconGroupe3: <i className='fa-light fa-3x fa-square-3'></i>,
     iconForme2:  <i className="fa-duotone fa-forward fa-2x"></i>,
     iconForme1:  <i className="fa-duotone fa-backward fa-2x"></i>,
+    iconLoupe: <i className="fa-duotone fa-magnifying-glass fa-2x"></i>,
 };
 
 /* détail des modes */
