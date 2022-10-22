@@ -37,7 +37,8 @@ class ConjAPI {
             return;
         }
 
-        const urlVb='https://leconjugueur.lefigaro.fr/php5/api.php?v=gencache'
+//        const urlVb='https://leconjugueur.lefigaro.fr/php5/api.php?v=gencache'
+        const urlVb='https://w5c2n4b4.stackpathcdn.com/php5/genCache.json'
             fetch(urlVb)
             .then(results => results.json())
             .then(info => {

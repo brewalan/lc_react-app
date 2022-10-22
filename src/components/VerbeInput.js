@@ -7,7 +7,7 @@ import ProposeConjTypo from './proposition/ProposeConjTypo';
 import NuageVerbeReact from './nuage/NuageVerbeReact';
 import HistoryVerbeReact from './nuage/HistoryVerbeReact';
 import { defaultVbConjug } from '../features/DefaultVbConj';
-import { conjText } from '../features/ConjIcon';
+import { conjText, iconList } from '../features/ConjIcon';
 import ButtonList from './bouton/ButtonList';
 import LogicielBox from './bouton/LogicielBox';
 
@@ -36,6 +36,7 @@ class VerbeInput extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleVerbePropose = this.handleVerbePropose.bind(this);
         this.handleResetVerbeHistory = this.handleResetVerbeHistory.bind(this);
+        this.handleRequestMasculin = this.handleRequestMasculin.bind(this);
         this.handleRequestFeminin = this.handleRequestFeminin.bind(this);
         this.handleRequestQuestion = this.handleRequestQuestion.bind(this);
         this.handleRequestNegation = this.handleRequestNegation.bind(this);
@@ -64,6 +65,13 @@ class VerbeInput extends React.Component {
       } 
 
       /***** button parameter click *****/
+      handleRequestMasculin(masculin) {
+        const vb = this.state.vbConjug.parametre.originalVerbe;
+        let param = Object.assign({}, this.state.vbConjug.parametre);
+        param.feminin=masculin;
+        this.loadVerbe(vb,this.generateParametre(param));    
+      }
+
       handleRequestFeminin(feminin) {
         const vb = this.state.vbConjug.parametre.originalVerbe;
         let param = Object.assign({}, this.state.vbConjug.parametre);
@@ -173,7 +181,7 @@ class VerbeInput extends React.Component {
         /* nothing if verb is empty */
         if (vb==="") return;
         /* check clear cache */
-        if (vb=="/clear") {
+        if (vb==="/clear") {
           conjAPI.clearCache();          
           return;
         }
@@ -210,7 +218,7 @@ class VerbeInput extends React.Component {
               <section className="col-12 col-md-8 col-lg-9">              
               <div className="input-group mb-3 mx-auto">
                 <span className="input-group-text" id="basic-addon1">
-                  <i className="fa-duotone fa-magnifying-glass fa-2x"></i>
+                  {iconList.iconLoupe}
                 </span>              
                 <input ref={(input) => { this.inputVerbe = input; }} 
                   autoFocus 
@@ -230,6 +238,7 @@ class VerbeInput extends React.Component {
               </div>
                 <ButtonList 
                   vbConjug={this.state.vbConjug}
+                  onRequestMasculin={this.handleRequestMasculin}
                   onRequestFeminin={this.handleRequestFeminin}
                   onRequestQuestion={this.handleRequestQuestion}
                   onRequestNegation={this.handleRequestNegation}

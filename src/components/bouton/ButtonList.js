@@ -1,5 +1,12 @@
 import React from 'react';
-import { conjText, iconList } from '../../features/ConjIcon';
+import ButtonExport from './ButtonExport';
+import ButtonForme2 from './ButtonForme2';
+import ButtonQuestionbNegation from './ButtonQuestionNegation';
+import ButtonPronominal from './ButtonPronominal';
+import ButtonPronominalEn from './ButtonPronominalEn';
+import ButtonPassif from './ButtonPassif';
+import ButtonAvoirEtre from './ButtonAvoirEtre';
+import ButtonGenre from './ButtonGenre';
 import './ButtonList.css'
 
 
@@ -7,6 +14,7 @@ import './ButtonList.css'
 class ButtonList extends React.Component {
     constructor(props) {
         super(props);
+        this.handleRequestMasculin = this.handleRequestMasculin.bind(this);
         this.handleRequestFeminin = this.handleRequestFeminin.bind(this);
         this.handleRequestQuestion = this.handleRequestQuestion.bind(this);
         this.handleRequestNegation = this.handleRequestNegation.bind(this);
@@ -18,8 +26,12 @@ class ButtonList extends React.Component {
         this.handleRequestForme2 = this.handleRequestForme2.bind(this);
       }
     
+      handleRequestMasculin(event) {
+        this.props.onRequestMasculin(false);
+      }
+
       handleRequestFeminin(event) {
-        this.props.onRequestFeminin((event.target.value==="feminin"));
+        this.props.onRequestFeminin(true);
       }
 
       handleRequestQuestion(event) {
@@ -49,199 +61,59 @@ class ButtonList extends React.Component {
       handleRequestAuxiAvoir(event) {
         this.props.onRequestAuxiAvoir((!this.props.vbConjug.parametre.auxiAvoir));
       }
+      
       handleRequestForme2(event) {
         this.props.onRequestForme2((!this.props.vbConjug.parametre.forme2));
       }
 
     render() {
       const info = this.props.vbConjug;
-      const printURL = "https://leconjugueur.lefigaro.fr/php5/index.php?t=I&v="+info.parametre.originalVerbe+"&p="+info.parametre.param;
-      const rtfURL = "https://leconjugueur.lefigaro.fr/php5/index.php?t=W&v="+info.parametre.originalVerbe+"&p="+info.parametre.param;
 
       if (info.caracteristique.existe) {      
         return (
           <React.Fragment>
-            <div className="pb-2 hstack gap-3">
+            <div className="pb-2 hstack gap-2">
 
+              <ButtonGenre
+                vbConjug={info}
+                onRequestMasculin={this.handleRequestMasculin}
+                onRequestFeminin={this.handleRequestFeminin} />
+          
+              <div className='vr'></div>
 
-            <div className="btn-group" 
-              role="group" 
-              aria-label="Choix du genre"
-              >
-              <input type="radio" 
-                className="btn-check" 
-                name="btnRadioGenreMasculin" 
-                id="btnradio1" 
-                autoComplete="off" 
-                value="masculin"
-                disabled={!info.caracteristique.autoriseFeminin}                 
-                checked={!info.parametre.feminin}
-                title={conjText.toolTipMasculin}    
-                onChange = {this.handleRequestFeminin}
-                />
-              <label className="btn btn-outline-primary"
-                htmlFor="btnradio1">
-                  {iconList.iconMasculin}
-              </label>
+              <div className="pl-2">
+                <ButtonQuestionbNegation
+                  vbConjug={info} 
+                  onRequestQuestion={this.handleRequestQuestion}
+                  onRequestNegation={this.handleRequestNegation} />
+                <ButtonForme2 
+                    vbConjug={info} 
+                    onRequestForme2={this.handleRequestForme2} />
 
-              <input type="radio" 
-                className="btn-check" 
-                name="btnRadioGenreFeminin" 
-                id="btnradio2" 
-                autoComplete="off" 
-                value="feminin"
-                disabled={!info.caracteristique.autoriseFeminin}
-                checked={info.parametre.feminin}
-                title={conjText.toolTipFeminin}    
-                onChange = {this.handleRequestFeminin}
-                />
-              <label className="btn btn-outline-primary" 
-                htmlFor="btnradio2">
-                  {iconList.iconFeminin}
-              </label>
-            </div>
+                <ButtonPronominal
+                  vbConjug={info} 
+                  onRequestPronominal={this.handleRequestPronominal} />
 
-            <button type="button" 
-                className='btn btn-info'
-                title={conjText.toolTipForme2}    
-                onClick = {this.handleRequestForme2}
-                disabled={!info.caracteristique.autoriseForme2}             
-                >
-                  {info.parametre.forme2 ? iconList.iconForme1 : iconList.iconForme2}
-              </button>
+                <ButtonPronominalEn
+                  vbConjug={info} 
+                  onRequestPronominalEn={this.handleRequestPronominalEn} />
 
+                <ButtonPassif
+                  vbConjug={info} 
+                  onRequestPassif={this.handleRequestPassif} />
 
+                <ButtonAvoirEtre
+                  vbConjug={info}
+                  onRequestAuxiEtre={this.handleRequestAuxiEtre}
+                  onRequestAuxiAvoir={this.handleRequestAuxiAvoir} />
+
+              </div>                    
+
+              <div className='ms-auto'>
+                <ButtonExport vbConjug={info} />
+              </div>
             
-            <div className='vr'></div>
-
-            <div className="pl-2">
-              <button type="button" 
-                className='btn btn-info {info.parametre.question ? "active" : ""}'
-                data-bs-toggle="button"
-                aria-pressed={info.parametre.question}
-                autoComplete="off"
-                title={conjText.toolTipQuestion}    
-                onClick = {this.handleRequestQuestion}
-                >
-                  {info.parametre.question ? iconList.icoQuestionActive : iconList.icoQuestion}
-              </button>
-
-              <button type="button" 
-                className='btn btn-danger {info.parametre.negation ? "active" : ""}'
-                data-bs-toggle="button"
-                aria-pressed={info.parametre.negation}
-                autoComplete="off"
-                title={conjText.toolTipNegation}    
-                onClick = {this.handleRequestNegation}
-                >
-                  {info.parametre.negation ? iconList.icoNegationActive : iconList.icoNegation}
-              </button>
             </div>
-
-            <div className='vr'></div>
-
-            <div className="">
-              <button type="button" 
-                className='btn btn-warning {info.parametre.pronominal ? "active" : ""}'
-                data-bs-toggle="button tooltip"
-                aria-pressed={info.parametre.pronominal}
-                autoComplete="off"
-                data-bs-placement="top" 
-                title={conjText.toolTipPronominal}    
-                disabled={!info.caracteristique.autorisePronominal}             
-                onClick = {this.handleRequestPronominal}
-                >
-                  {info.parametre.pronominal ? iconList.icoPronominalActive : iconList.icoPronominal}
-              </button>
-              <button type="button" 
-                className='btn btn-warning {info.parametre.pronominalEn ? "active" : ""}'
-                data-bs-toggle="button tooltip"
-                aria-pressed={info.parametre.pronominalEn}
-                autoComplete="off"
-                data-bs-placement="top" 
-                title={conjText.toolTipPronominalEn}    
-                disabled={!info.caracteristique.autorisePronominalEn}             
-                onClick = {this.handleRequestPronominalEn}
-                >
-                  {info.parametre.pronominalEn ? iconList.icoPronominalEnActive : iconList.icoPronominalEn}
-              </button>
-            </div>    
-            <div>
-              <button type="button" 
-                className='btn btn-info {info.parametre.passif ? "active" : ""}'
-                data-bs-toggle="button"
-                aria-pressed={info.parametre.passif}
-                autoComplete="off"
-                onClick = {this.handleRequestPassif}
-                disabled={!info.caracteristique.autorisePassif}             
-                title={conjText.toolTipPassif}    
-                >
-                  {info.parametre.passif ? iconList.icoPassifActive : iconList.icoPassif}
-              </button>
-            </div>                    
-
-
-
-
-            <div className='vr'></div>
-
-            <div className="btn-group" 
-              role="group" 
-              aria-label="Auxiliaire"
-              >
-              <input type="radio" 
-                className="btn-check" 
-                name="btnRadioAuxiEtre" 
-                id="btnradio11" 
-                autoComplete="off" 
-                value="masculin"
-                disabled={!info.caracteristique.autoriseAuxiEtre}                 
-                checked={info.parametre.auxiAvoir}
-                title={conjText.toolTipAuxiAvoir}    
-                onChange = {this.handleRequestAuxiAvoir}
-                />
-              <label className="btn btn-outline-primary"
-                htmlFor="btnradio11">
-                  {conjText.auxiAvoir}
-              </label>
-
-              <input type="radio" 
-                className="btn-check" 
-                name="btnRadioAuxiAvoir" 
-                id="btnradio22" 
-                autoComplete="off" 
-                value="feminin"
-                disabled={!info.caracteristique.autoriseAuxiEtre}
-                checked={info.parametre.auxiEtre}
-                title={conjText.toolTipAuxiEtre}    
-                onChange = {this.handleRequestAuxiEtre}
-                />
-              <label className="btn btn-outline-primary" 
-                htmlFor="btnradio22">
-                  {conjText.auxiEtre}
-              </label>
-            </div>
-
-
-
-            <div className='ms-auto'>
-
-              <a className='btn btn-outline-dark' 
-                title={conjText.toolTipPrint} 
-                href={printURL} target="_">
-                  {iconList.iconPrint}
-              </a>
-              <a className='btn btn-outline-dark' 
-                title={conjText.toolTipWord} 
-                href={rtfURL} target="_">
-                  {iconList.iconWord}
-              </a>
-
-
-
-            </div>
-            
-          </div>
           </React.Fragment>       
         );
       }
