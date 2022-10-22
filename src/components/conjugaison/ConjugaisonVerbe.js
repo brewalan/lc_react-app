@@ -1,5 +1,6 @@
 import React from 'react';
 import ConjugaisonBox from './ConjugaisonBox';
+import ConjugaisonSmallBox from './ConjugaisonSmallBox';
 import ModeBox from './ModeBox';
 import Parser from 'html-react-parser'
 import { conjText,conjMode,conjTemps } from '../../features/ConjIcon';
@@ -12,6 +13,9 @@ class ConjugaisonVerbe extends React.Component {
     renderConjugaisonBox(temps,conjugaison) {
         return <ConjugaisonBox temps={temps} conjugaison={conjugaison} />
     }
+    renderConjugaisonSmallBox(temps,conjugaison) {
+        return <ConjugaisonSmallBox temps={temps} conjugaison={conjugaison} />
+    }    
     renderModeBox(mode) {
         return <ModeBox mode={mode} />        
     }
@@ -61,19 +65,21 @@ class ConjugaisonVerbe extends React.Component {
                     </div>      
                     {/* Impératif & participe */}
                     <div className='row'>
-                    <div className='col-6'>
-                        {this.renderModeBox(conjMode.imperatif)}
+                        <div className='col-6'>
+                            {this.renderModeBox(conjMode.imperatif)}
+                            <div className='row'>
+                                {this.renderConjugaisonSmallBox(conjTemps.IMP_P,info.conjugaison.IMP_P)}
+                                {this.renderConjugaisonSmallBox(conjTemps.IMP_PC,info.conjugaison.IMP_PC)}
+                            </div>
+                        </div>
+                        <div className='col-6'>
+                            {this.renderModeBox(conjMode.participe)}
+                            <div className='row'>
+                                {this.renderConjugaisonSmallBox(conjTemps.PART_PR,info.conjugaison.PART_PR)}
+                                {this.renderConjugaisonSmallBox(conjTemps.PART_ALL,info.conjugaison.PART_ALL)}
+                            </div>
+                        </div>
                     </div>
-                    <div className='col-6'>
-                        {this.renderModeBox(conjMode.participe)}
-                    </div>
-                    </div>
-                    <div className='row'>
-                    {this.renderConjugaisonBox(conjTemps.IMP_P,info.conjugaison.IMP_P)}
-                    {this.renderConjugaisonBox(conjTemps.IMP_PC,info.conjugaison.IMP_PC)}
-                    {this.renderConjugaisonBox(conjTemps.PART_PR,info.conjugaison.PART_PR)}
-                    {this.renderConjugaisonBox(conjTemps.PART_ALL,info.conjugaison.PART_ALL)}
-                    </div>                                                                                                
                     {/* Infinitif */}
                     {this.renderModeBox(conjMode.infinitif)}
                     <div className='row'>
@@ -98,19 +104,21 @@ class ConjugaisonVerbe extends React.Component {
                     </div>          
                     {/* Impératif & participe */}
                     <div className='row'>
-                    <div className='col-6'>
-                        {this.renderModeBox(conjMode.tournure)}
+                        <div className='col-6'>
+                            {this.renderModeBox(conjMode.tournure)}
+                            <div className='row'>
+                                {this.renderConjugaisonSmallBox(conjTemps.FUTUR_PROCHE,info.conjugaison.FUTUR_PROCHE)}
+                                {this.renderConjugaisonSmallBox(conjTemps.PASSE_PROCHE,info.conjugaison.PASSE_PROCHE)}
+                            </div>
+                        </div>
+                        <div className='col-6'>
+                            {this.renderModeBox(conjMode.gerondif)}
+                            <div className='row'>
+                                {this.renderConjugaisonSmallBox(conjTemps.GER_P,info.conjugaison.GER_P)}
+                                {this.renderConjugaisonSmallBox(conjTemps.GER_PP,info.conjugaison.GER_PP)}
+                            </div>
+                        </div>
                     </div>
-                    <div className='col-6'>
-                        {this.renderModeBox(conjMode.gerondif)}
-                    </div>
-                    </div>
-                    <div className='row'>
-                    {this.renderConjugaisonBox(conjTemps.FUTUR_PROCHE,info.conjugaison.FUTUR_PROCHE)}
-                    {this.renderConjugaisonBox(conjTemps.PASSE_PROCHE,info.conjugaison.PASSE_PROCHE)}
-                    {this.renderConjugaisonBox(conjTemps.GER_P,info.conjugaison.GER_P)}
-                    {this.renderConjugaisonBox(conjTemps.GER_PP,info.conjugaison.GER_PP)}
-                    </div>                                                                                                
 
                 </div>                  
                 </React.StrictMode>

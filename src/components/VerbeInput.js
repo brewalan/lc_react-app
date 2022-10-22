@@ -230,7 +230,7 @@ class VerbeInput extends React.Component {
                   onKeyDown={this.handleKeyDown} 
                   onChange={this.handleChange} />
                 <button 
-                  className='btn btn-outline-secondary' 
+                  className='btn btn-outline-secondary conjugBtn' 
                   onClick={this.handleClick} 
                   value={this.state.value}>
                     {conjText.btnConjuguer}
