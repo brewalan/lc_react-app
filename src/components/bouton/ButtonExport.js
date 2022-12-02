@@ -9,7 +9,7 @@ class ButtonExport extends React.Component {
     render() {
         const info = this.props.vbConjug;
         const printURL = "https://leconjugueur.lefigaro.fr/php5/index.php?t=I&v="+info.parametre.originalVerbe+"&p="+info.parametre.param;
-        const rtfURL = "https://leconjugueur.lefigaro.fr/php5/index.php?t=W&v="+info.parametre.originalVerbe+"&p="+info.parametre.param;
+        const rtfURL = "https://leconjugueur.lefigaro.fr/php5/index.php?t=R&v="+info.parametre.originalVerbe+"&p="+info.parametre.param;
   
         if (info.caracteristique.existe) {      
           return (

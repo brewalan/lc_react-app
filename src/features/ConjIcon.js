@@ -79,7 +79,7 @@ export const conjTemps = {
 
 /* texts to be used */
 export const conjText = {
-    aideText: "<h3>Bienvenue dans Le Conjugueur React</h3><p>Cette page vous permet de voir les tableaux de conjugaison de tous les verbes.<br>Cette page utilise la technologie React qui permet de ne mettre à jour que la zone qui a été modifiée. Ceci permet d'avoir une plus grande fluidité dans la mise à jour de la page.<br>Pour visualiser un verbe, entrez un verbe dans la zone ci-dessus.<br>Puis, cliquez sur le bouton Conjuguer pour voir le tableau de conjugaison.</p>",
+    aideText: "<h3>Bienvenue dans la Webapp de Le Conjugueur</h3><p>Les tableaux de conjugaison de tous les verbes sont disponibles sur cette page.<br />Cette page utilise la technologie React qui permet de ne mettre à jour que la zone qui a été modifiée. Ceci permet d'avoir une plus grande fluidité dans la mise à jour de la page.<br />Pour visualiser un verbe, entrez un verbe dans la zone ci-dessus.<br />Puis, cliquez sur le bouton Conjuguer pour voir le tableau de conjugaison.</p>",
     conjugaisonVerbe: "Conjugaison du verbe ",
     historique: "Historique",
     nuageDeVerbe: "Nuage de verbes",

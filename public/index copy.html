@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="description"
+      content="Le Conjugueur créé en utilisant React"
+    />
+    <!-- Bootstrap styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/f9ad527616.js" crossorigin="anonymous"></script>
+
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Le Conjugueur React</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <header class="site-header py-1">
+        <nav class="navbar navbar-expand-lg bg-secondary">
+          <div class="container-fluid">
+            <h2 class="text-white px-4"><a class="navbar-brand" href="index.html"><i class="fa-2x fa-duotone fa-stars"></i></a>Le Conjugueur React</h2>
+            <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon bg-white"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link active text-white" aria-current="page" href="index.html">Accueil</a>
+                <a class="nav-link text-white" href="game.html">Jouer</a>
+                <a class="nav-link text-white" href="aide.html">Aide</a>
+              </div>
+            </div>
+          </div>
+        </nav>      
+      </header>
+        
+      <main>
+        <div class="container-fluid">
+          <div class="row">
+            
+              <div id="root">
+                <p>Bienvenue dans Le Conjugueur React
+                  Cette page vous permet de voir les tableaux de conjugaison de tous les verbes.
+                  Cette page utilise la technologie React qui permet de ne mettre à jour que la zone qui a été modifiée. Ceci permet d'avoir une plus grande fluidité dans la mise à jour de la page.
+                  Pour visualiser un verbe, entrez un verbe dans la zone ci-dessus.
+                  Puis, cliquez sur le bouton Conjuguer pour voir le tableau de conjugaison.</p>
+                <p>iconTrash: <i className="fa-duotone fa-trash fa-2x"></i>
+                iconFeminin: <i className="fa-solid fa-venus fa-2x"></i>
+                iconMasculin: <i className="fa-solid fa-mars fa-2x"></i>
+                icoPronominal: <i className="fa-duotone fa-arrows-rotate fa-2x"></i>
+                icoPronominalActive: <i className="fa-duotone fa-arrows-rotate fa-2x fa-rotate-by btn-rotate"></i>
+                icoPronominalEn: <i className="fa-duotone fa-rotate-exclamation fa-2x"></i>
+                icoPronominalEnActive: <i className="fa-duotone fa-rotate-exclamation fa-2x fa-rotate-by btn-rotate"></i>
+                icoPassif: <i className="fa-duotone fa-snooze fa-2x"></i>
+                icoPassifActive: <i className="fa-duotone fa-snooze fa-2x fa-rotate-by btn-rotate"></i>
+                icoQuestion: <i className="fa-duotone fa-seal-question fa-2x"></i>
+                icoQuestionActive: <i className="fa-duotone fa-seal-question fa-2x fa-rotate-by btn-rotate"></i>
+                icoNegation: <i className="fa-duotone fa-ban fa-2x"></i>
+                icoNegationActive: <i className="fa-duotone fa-ban fa-2x fa-rotate-by btn-rotate"></i>
+                iconPrint: <i className="fa-regular fa-print fa-2x"></i>
+                iconWord: <i className="fa-regular fa-file-word fa-2x"></i>
+                iconIOS: <i className="fa-brands fa-apple fa-2x"></i>
+                iconAndroid: <i className="fa-brands fa-android fa-2x"></i>
+                iconWindows: <i className="fa-brands fa-windows fa-2x"></i>
+                iconMac: <i className="fa-solid fa-computer-classic fa-2x"></i>
+                iconGroupe1: <i className='fa-light fa-3x fa-square-1'></i> 
+                iconGroupe2: <i className='fa-light fa-3x fa-square-2'></i> 
+                iconGroupe3: <i className='fa-light fa-3x fa-square-3'></i>
+                iconForme2:  <i className="fa-duotone fa-forward fa-2x"></i>
+                iconForme1:  <i className="fa-duotone fa-backward fa-2x"></i>
+                <i className="fa-duotone fa-magnifying-glass fa-2x"></i>
+              </p>
+
+              </div>
+
+          </div>
+        </div>
+
+      </main>  
+
+
+<footer class="site-footer py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md">
+          <h2><i class="fa-2x fa-duotone fa-stars"></i> Le Conjugueur React</h2>
+          <small class="d-block mb-3 text-muted">&copy; 2022</small>
+        </div>   
+        <div class="col-6 col-md">
+          <h5>Fonctionnalité</h5>
+          <ul class="list-unstyled text-small">
+            <li><i class="fa-solid fa-house"></i>&nbsp;<a class="link-secondary" href="/index.html">Accueil</a></li>
+            <li><i class="fa-solid fa-circle-play"></i>&nbsp;<a class="link-secondary" href="/game.html">Jouer</a></li>
+            <li><i class="fa-solid fa-circle-info"></i>&nbsp;<a class="link-secondary" href="aide.html">Aide</a></li>
+          </ul>
+        </div>                 
+        <div class="col-6 col-md">
+          <h5>Contact <i class="fa-regular fa-envelope"></i></h5>
+          <p><a href="https://leconjugueur.lefigaro.fr/blog/contact/">Pour me contacter,</a> laissez-moi un message sur le Blog de Le Conjugueur en mentionnant qu'il s'agit de Starium.</p>
+        </div>
+        <div class="col-6 col-md">
+          <h5>À propos</h5>
+          <ul class="list-unstyled text-small">
+            <li><i class="fa-brands fa-github"></i>&nbsp;<a class="link-secondary" href="https://github.com/brewalan/StariumJS">Source</a></li>
+            <li><i class="fa-regular fa-cookie"></i>&nbsp;<a class="link-secondary" href="privacy.html">Confidentialité</a></li>
+            <li><i class="fa-solid fa-gavel"></i>&nbsp;<a class="link-secondary" data-bs-toggle="modal" href="#modalMention">Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>        
+
+  <!-- Mentions légales -->
+  <div class="modal fade" id="modalMention" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="modalStartLabel">Mentions Légales</h5>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p><i class="fa-duotone fa-gavel fa-2x"></i></p>
+                <p>Le Conjugueur Reacy est proposé par la société Le Conjugueur SRL enregistrée à la Banque Carrefour des Entreprises en Belgique sous le numéro de TVA BE0687930631.</p>
+                <p>Hébergeur : Amazon AWS Paris, 31 pl des Corolles 92400 Courbevoie, France</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -60,13 +60,13 @@ class ConjAPI {
             this.historyVerbe.push(vb);
             this.historyVerbe=array_unique(this.historyVerbe);
 
-            console.log(vb+param);
+            //console.log(vb+param);
             
             //check in cache
             const cache = this.getVerbeFromCache(vb+param);
             if (typeof cache !== 'undefined') {
-                console.log("from cache");
-                console.log(this.cacheVerbe);
+                //console.log("from cache");
+                //console.log(this.cacheVerbe);
                 resolve(cache);
             } else {
                 
@@ -80,7 +80,7 @@ class ConjAPI {
                             this.cacheVerbe.push(info);
                             this.saveCache();
                         }
-                        console.log("from server");
+                        //console.log("from server");
                         //return result
                         resolve(info);
                     })
