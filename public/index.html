@@ -888,8 +888,109 @@
         f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-K3VX7TW');
     </script>
-    <!-- Google Ads -->
-    <script data-ad-client="ca-pub-7348731048855961" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Ads Init -->
+    <script type="text/javascript">
+        var apntag = apntag || {};
+        apntag.anq = apntag.anq || [];
+        (function () {
+            var d = document,
+                scr = d.createElement("script"),
+                pro = d.location.protocol,
+                tar = d.getElementsByTagName("head")[0];
+            scr.type = "text/javascript";
+            scr.async = true;
+            scr.src = (pro === "https:" ? "https" : "http") + "://acdn.adnxs.com/ast/ast.js";
+            if (!apntag.l) {
+                apntag.l = true;
+                tar.insertBefore(scr, tar.firstChild);
+            }
+        })();
+        apntag.anq.push(function () {
+            apntag.setPageOpts({ member: 3273, keywords: { "mots-cles": "" } });
+            var agent = navigator.userAgent.toLowerCase();
+            if (agent.indexOf(/(iphone|ipod|)/i) != -1 || (agent.indexOf(/android/i) != -1 && agent.indexOf(/mobile/i) != -1)) {
+                apntag.defineTag({
+                    invCode: "smartphone_leconjugueur_articles_mban_atf",
+                    sizes: [
+                        [300, 50],
+                        [320, 50],
+                        [300, 51],
+                        [320, 51],
+                    ],
+                    targetId: "smartphone_leconjugueur_articles_mban_atf",
+                });
+                apntag.defineTag({
+                    invCode: "smartphone_leconjugueur_articles_pave_atf",
+                    sizes: [
+                        [300, 600],
+                        [300, 250],
+                        [300, 601],
+                        [300, 251],
+                    ],
+                    targetId: "smartphone_leconjugueur_articles_pave_atf",
+                });
+            } else if (agent.indexOf(/(ipad|android)/i) != -1) {
+                apntag.defineTag({
+                    invCode: "tablette_leconjugueur_articles_mban_atf",
+                    sizes: [
+                        [1000, 300],
+                        [970, 250],
+                        [1000, 260],
+                        [1000, 200],
+                        [1000, 90],
+                        [728, 90],
+                        [1000, 301],
+                        [970, 251],
+                        [1000, 261],
+                        [1000, 201],
+                        [1000, 91],
+                        [728, 91],
+                    ],
+                    targetId: "tablette_leconjugueur_articles_mban_atf",
+                });
+                apntag.defineTag({
+                    invCode: "tablette_leconjugueur_articles_pave_atf",
+                    sizes: [
+                        [300, 600],
+                        [300, 250],
+                        [300, 601],
+                        [300, 251],
+                    ],
+                    targetId: "tablette_leconjugueur_articles_pave_atf",
+                });
+            } else {
+                apntag.defineTag({
+                    invCode: "desktop_leconjugueur_articles_mban_atf",
+                    sizes: [
+                        [1000, 300],
+                        [970, 250],
+                        [1000, 260],
+                        [1000, 200],
+                        [1000, 90],
+                        [728, 90],
+                        [1000, 301],
+                        [970, 251],
+                        [1000, 261],
+                        [1000, 201],
+                        [1000, 91],
+                        [728, 91],
+                    ],
+                    targetId: "desktop_leconjugueur_articles_mban_atf",
+                });
+                apntag.defineTag({
+                    invCode: "desktop_leconjugueur_articles_pave_atf",
+                    sizes: [
+                        [300, 600],
+                        [300, 250],
+                        [300, 601],
+                        [300, 251],
+                    ],
+                    targetId: "desktop_leconjugueur_articles_pave_atf",
+                });
+            }
+            apntag.loadTags();
+        });
+    </script>    
     <!-- Taboola Init -->
     <script type="text/javascript">
     window._taboola = window._taboola || [];
@@ -1303,13 +1404,44 @@
             </div>
         </div>
     </header>
-    <div style="margin:auto;text-align:center;">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7348731048855961" data-ad-slot="9850775111" data-ad-format="auto"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
 
+    <!-- Pub megaban -->
+    <div id="megaban" style="margin: auto; text-align: center;">
+        <div id="smartphone_leconjugueur_articles_mban_atf">
+            <script type="text/javascript">
+                var agent=navigator.userAgent.toLowerCase();
+                if ((agent.indexOf(/(iphone|ipod|)/i)!=-1) || ((agent.indexOf(/android/i)!=-1) && (agent.indexOf(/mobile/i)!=-1))) {
+                apntag.anq.push(function() {
+                apntag.showTag('smartphone_leconjugueur_articles_mban_atf');
+                });
+                }
+            </script>
+        </div>
+        <div id="tablette_leconjugueur_articles_mban_atf">
+            <script type="text/javascript">
+                var agent=navigator.userAgent.toLowerCase();
+                if ((agent.indexOf(/(iphone|ipod|)/i)!=-1) || ((agent.indexOf(/android/i)!=-1) && (agent.indexOf(/mobile/i)!=-1))) {
+                } else if (agent.indexOf(/(ipad|android)/i)!=-1) {
+                apntag.anq.push(function() {
+                apntag.showTag('tablette_leconjugueur_articles_mban_atf');
+                });
+                }
+            </script>
+        </div>
+        <div id="desktop_leconjugueur_articles_mban_atf">
+            <script type="text/javascript">
+                var agent=navigator.userAgent.toLowerCase();
+                if ((agent.indexOf(/(iphone|ipod|)/i)!=-1) || ((agent.indexOf(/android/i)!=-1) && (agent.indexOf(/mobile/i)!=-1))) {
+                } else if (agent.indexOf(/(ipad|android)/i)!=-1) {
+                } else {
+                apntag.anq.push(function() {
+                apntag.showTag('desktop_leconjugueur_articles_mban_atf');
+                });
+                }
+            </script>
+        </div>
+    </div>
+        
     <!-- start main page -->
         
       <main>
@@ -1358,6 +1490,7 @@
 
       </main>  
 
+      <!-- Pub Taboola -->
       <div id="taboola-new-site-below-article-thumbnails"></div>
       <script type="text/javascript">
       window._taboola = window._taboola || [];
@@ -1379,6 +1512,7 @@
       });
       </script>
   
+<!-- Footer -->  
 
 <footer class="site-footer py-5 bg-light">
     <div class="container">
