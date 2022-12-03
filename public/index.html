@@ -89,42 +89,7 @@
         vertical-align:top
     }
 
-    #f_footer input, #f_header input {
-        background-color: #fff;
-        border: 1px solid #999;
-        color: #999;
-        height: 20px;
-        padding: 0 5px 0 5px;
-        width: 230px;
-        font-family: verdana, arial, sans-serif;
-        font-size:90%
-    }
 
-    #f_footer button.go, #f_header button.go {
-        cursor: pointer;
-        -moz-box-shadow: 0 0 2px #999, 0 -2px 8px rgba(0, 0, 0, .6) inset;
-        -webkit-box-shadow: 0 0 2px #999, 0 -2px 8px rgba(0, 0, 0, .6) inset;
-        box-shadow: 0 0 2px #999, 0 -2px 8px rgba(0, 0, 0, .6) inset;
-        border: 1px solid rgba(0, 0, 0, .6);
-        color: #fff;
-        font-family: verdana, arial, sans-serif;
-        font-size: 80%;
-        text-transform: uppercase;
-        height: 20px;
-        padding: 0 5px 1px;
-        float: none;
-        background-color:#aaa
-    }
-
-    #f_footer button.go:focus, #f_footer button.go:hover, #f_header button.go:focus, #f_header button.go:hover {
-        background-image: -moz-linear-gradient(center top, rgba(255, 255, 255, .1), rgba(255, 255, 255, .1));
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255, 255, 255, .1)), color-stop(1, rgba(255, 255, 255, .1)));
-        background-image: -webkit-linear-gradient(rgba(255, 255, 255, .1), rgba(255, 255, 255, .1));
-        background-image: linear-gradient(rgba(255, 255, 255, .1), rgba(255, 255, 255, .1));
-        -moz-box-shadow: 0 0 8px #999, 0 0 2px rgba(0, 0, 0, .6) inset;
-        -webkit-box-shadow: 0 0 8px #999, 0 0 2px rgba(0, 0, 0, .6) inset;
-        box-shadow:0 0 8px #999, 0 0 2px rgba(0, 0, 0, .6) inset
-    }
 
     #f_header .firstMenu ul.firstNav li:first-child a {
         background-image: url(https://w5c2n4b4.stackpathcdn.com/css/img/picto-home-header.png);
@@ -153,7 +118,7 @@
         width: 100%;
         margin: 10px 0 0;
         padding: 0;
-        min-height: 140px;
+        min-height: 78px;
         z-index: 1;
         background-color: #d1e0f3;
         text-align: left;
@@ -390,7 +355,6 @@
         display: block;
         float: left;
         min-height: 21px;
-        padding-left: 10px;
         padding-right:2px
     }
 
@@ -400,7 +364,6 @@
         background-position: 0 -255px;
         width: 75px;
         height: 86px;
-        padding-left: 15px;
         padding-right: 8px;
         padding-top: 8px;
         right:5px
@@ -422,131 +385,6 @@
         -o-text-shadow: 0 0 5px #000;
         text-shadow: 0 0 5px #000;
         color:#fff !important
-    }
-
-    #f_header .secondaryMenu {
-        font-family: InterstateRegularCondensedReg, arial, sans-serif;
-        font-size:125%
-    }
-
-    #f_header .secondaryMenu a {
-        font-family:InterstateRegularCondensedReg, arial, sans-serif
-    }
-
-    #f_header .secondaryMenu dl {
-        display:inline-block
-    }
-
-    * html #f_header .secondaryMenu dl {
-        float:left
-    }
-
-    #f_header .secondaryMenu dl dt {
-        background-image: url(https://w5c2n4b4.stackpathcdn.com/img/header-patern-link-32bit.png);
-        background-position: left 35%;
-        background-repeat: no-repeat;
-        display: block;
-        height: 30px;
-        text-transform: uppercase;
-        vertical-align: middle;
-        padding: 5px 10px 0;
-        font-weight: 400;
-        background-image: expression((this.parentNode==this.parentNode.parentNode.firstChild) ? 'none': 'url("https://w5c2n4b4.stackpathcdn.com/img/header-patern-link-32bit.png")')
-    }
-
-    #f_header .secondaryMenu dl:first-child dt {
-        background-image:none
-    }
-
-    #f_header .moreValue a {
-        color:#da740d
-    }
-
-    #f_header, #f_header .secondaryMenu dl dd, #f_header .secondaryMenu dl.selected dt, #f_header.noJS .secondaryMenu dl.selected:hover dt, #f_header.noJS .secondaryMenu dl:hover dt {
-        background-color:#ddd
-    }
-
-    #f_header .secondaryMenu dl dd {
-        border-bottom: 1px solid #999;
-        left: 0;
-        position: absolute;
-        width: 100%;
-        display: none;
-        min-height: 22px;
-        padding-top: 5px;
-        margin-top:-1px
-    }
-
-    #f_header .secondaryMenu dd li {
-        background-image: url(https://w5c2n4b4.stackpathcdn.com/img/header-patern-link-32bit.png);
-        background-position: left center;
-        background-repeat: no-repeat;
-        display: inline-block;
-        padding:0 10px
-    }
-
-    * html #f_header .secondaryMenu dd li {
-        float:left
-    }
-
-    #f_header .secondaryMenu dd li:first-child {
-        background-image:none
-    }
-
-    #f_header .secondaryMenu dl.selected dt, #f_header.noJS .secondaryMenu dl.selected:hover dt, #f_header.noJS .secondaryMenu dl:hover dt {
-        -moz-box-shadow: 0 3px 2px rgba(0, 0, 0, .5) inset;
-        -webkit-box-shadow: 0 3px 2px rgba(0, 0, 0, .5) inset;
-        box-shadow: 0 3px 2px rgba(0, 0, 0, .5) inset;
-        background-image: none;
-        position: relative;
-        z-index:1
-    }
-
-    #f_header.noJS .secondaryMenu dl.selected dt {
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        background-image: url(https://w5c2n4b4.stackpathcdn.com/img/header-patern-link-32bit.png);
-        background-color: transparent;
-        position: relative;
-        z-index:0
-    }
-
-    #f_header .secondaryMenu dl.selected + dl dt, #f_header.noJS .secondaryMenu dl:hover + dl dt {
-        background-image:none
-    }
-
-    #f_header.noJS .secondaryMenu dl.selected + dl dt {
-        background-image:url(https://w5c2n4b4.stackpathcdn.com/img/header-patern-link-32bit.png)
-    }
-
-    #f_header .secondaryMenu dl.selected dd {
-        display:block
-    }
-
-    #f_header.noJS .secondaryMenu dl.selected dd {
-        display:none
-    }
-
-    #f_header.noJS .secondaryMenu dl.selected:hover dd, #f_header.noJS .secondaryMenu dl:hover dd {
-        display:block
-    }
-
-    #f_header .secondaryMenu dd ul {
-        display: block;
-        margin: 0 auto;
-        width: 100%;
-        padding: 0 4px;
-        overflow: hidden;
-        white-space:nowrap
-    }
-
-    #f_header .headerSecondary form {
-        float: right;
-        padding: 7px 0 5px 5px;
-        text-align: right;
-        width: auto;
-        max-width:600px
     }
 
     #f_header .headerSecondary form fieldset legend {
@@ -589,9 +427,7 @@
         background-color:#fff
     }
 
-    #f_header, #f_header .secondaryMenu dl dd, #f_header .secondaryMenu dl.selected dt, #f_header.noJS .secondaryMenu dl.selected:hover dt, #f_header.noJS .secondaryMenu dl:hover dt {
-        background-color:#d1e0f3
-    }
+
 
     #f_header a {
         color:#000
@@ -599,34 +435,6 @@
 
     #f_header .firstMenu a {
         color:#fff !important
-    }
-
-    #f_header .secondaryMenu a {
-        color:#000 !important
-    }
-
-    #f_header .secondaryMenu a:hover {
-        color:#f90 !important
-    }
-
-    #f_header .secondaryMenu dd li.selected a {
-        color:#da740d !important
-    }
-
-    #f_header .moreValue a {
-        color:#da740d !important
-    }
-
-    #f_footer .footer_top, #f_footer button.go, #f_header .headerPrimary, #f_header button.go {
-        background-color:#007ac8
-    }
-
-    #f_header .headerSecondary {
-        background-color:#fff
-    }
-
-    #f_header, #f_header .secondaryMenu dl dd, #f_header .secondaryMenu dl.selected dt, #f_header.noJS .secondaryMenu dl.selected:hover dt, #f_header.noJS .secondaryMenu dl:hover dt {
-        background-color:#bed3e8
     }
 
     @media screen and (min-width: 641px) {
@@ -644,7 +452,7 @@
     }
 
     #header_link nav {
-        font-size: 9px;
+        font-size: 0.6em;
         margin: auto;
         text-align:center
     }
@@ -658,6 +466,11 @@
       color: #003580;
       text-decoration: underline;
       font-weight: 700;
+    }
+    a:hover {
+        transition-property: color;
+        transition-duration:.1s;    
+        font-weight: 600;
     }
 
 
@@ -1203,176 +1016,9 @@
                         </li>
                     </ul>
                 </div>
-                <div class="headerSecondary">
-                    <div class="headerContent">
-                        <form method="post" action="/frrecherche.php" id="rechercher-fig">
-                            <fieldset>
-                                <legend class="linkBrowser">Formulaire de Recherche</legend>
-                                <span>
-                                    <input type="text" name="q" id="q" aria-label="Search" class="rech placeHolder" placeholder="Rechercher dans Le Conjugueur"/>
-                                    <button type="submit" class="go" name="btn2" id="go" value="Rechercher">
-                                        <img src="https://w5c2n4b4.stackpathcdn.com/images/button-search-32bit.png" alt="Rechercher" width="12px" height="12px"/>
-                                    </button>
-                                </span>
-                                <input type="hidden" name="charset" value="iso"/>
-                            </fieldset>
-                        </form>
-                        <div class="secondaryMenu">
-                            <dl id="f_menu_info" class=" ">
-                                <dt>
-                                    <a href="/conjugaison">Conjugaison</a>
-                                </dt>
-                                <dd>
-                                    <ul>
-                                        <li>
-                                            <a href="/conjugaison" title="Conjuguer un verbe">La conjugaison</a>
-                                        </li>
-                                        <li>
-                                            <a href="/jeux" title="Jeux de conjugaison et de lettres">Jeux</a>
-                                        </li>
-                                        <li>
-                                            <a href="/frlistedeverbe.php" title="Liste des principaux verbes">Liste de verbes</a>
-                                        </li>
-                                        <li>
-                                            <a href="https://leconjugueur.lefigaro.fr/ecole" title="Version destinée aux écoles">Version école</a>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                            <dl id="f_menu_regle" class=" ">
-                                <dt>
-                                    <a href="/regle" title="Règle de conjugaison et de grammaire">Règles</a>
-                                </dt>
-                                <dd>
-                                    <ul>
-                                        <li>
-                                            <a href="/regle">Règles de conjugaison</a>
-                                        </li>
-                                        <li>
-                                            <a href="/frhomophones.php">Les homophones</a>
-                                        </li>
-                                        <li>
-                                            <a href="/frmodele.php">Modèle de verbes</a>
-                                        </li>
-                                        <li>
-                                            <a href="/frpiege.php">Verbes particuliers</a>
-                                        </li>
-                                        <li>
-                                            <a href="/frorthographe.php">Règles d'orthographe</a>
-                                        </li>
-                                        <li>
-                                            <a href="/regle_de_grammaire.php">Règles de grammaire</a>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                            <dl id="f_menu_exercice" class=" ">
-                                <dt>
-                                    <a href="/exercice">Exercices</a>
-                                </dt>
-                                <dd>
-                                    <ul>
-                                        <li>
-                                            <a href="/exercice" title="Exercice de conjugaison">Accueil des exercices</a>
-                                        </li>
-                                        <li>
-                                            <a href="/frexoliste.php" title="Liste des exercices">Exercice au hasard</a>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                            <dl id="f_menu_orthographe" class=" ">
-                                <dt>
-                                    <a href="/orthographe">Orthographe</a>
-                                </dt>
-                                <dd>
-                                    <ul>
-                                        <li>
-                                            <a href="/orthographe" title="Retrouver l'orthographe d'un mot">Orthographe d'un mot</a>
-                                        </li>
-                                        <li>
-                                            <a href="/frorthographe.php" title="Règle d'orthographe">Règles d'orthographe</a>
-                                        </li>
-                                        <li>
-                                            <a href="/frponctuation.php" title="Règle sur la ponctuation">La ponctuation</a>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                            <dl id="f_menu_forum" class=" ">
-                                <dt>
-                                    <a href="https://forum.leconjugueur.lefigaro.fr">Forum</a>
-                                </dt>
-                                <dd>
-                                    <ul>
-                                        <li>
-                                            <a href="https://forum.leconjugueur.lefigaro.fr/login.php" title="Se connecter au forum">Identification</a>
-                                        </li>
-                                        <li>
-                                            <a href="https://forum.leconjugueur.lefigaro.fr/register.php" title="S'inscrire au forum">S'inscrire</a>
-                                        </li>
-                                        <li>
-                                            <a href="https://forum.leconjugueur.lefigaro.fr/search.php?action=show_new" title="Nouvelles publications">Nouvelles contributions</a>
-                                        </li>
-                                        <li>
-                                            <a href="https://forum.leconjugueur.lefigaro.fr/search.php?action=show_recent" title="Activité récente">Récentes</a>
-                                        </li>
-                                        <li>
-                                            <a href="https://forum.leconjugueur.lefigaro.fr/search.php?action=show_recent" title="Activité sans réponse">Sans réponse</a>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                            <dl id="f_menu_nombre" class=" ">
-                                <dt>
-                                    <a href="/frnombre.php">Nombres</a>
-                                </dt>
-                                <dd>
-                                    <ul>
-                                        <li>
-                                            <a href="/frnombre.php" title="Ecrire un nombre en lettres">Les nombres en lettres</a>
-                                        </li>
-                                        <li>
-                                            <a href="/frlesnombres.php" title="Règle d'écriture des nombres">Règle d'écriture des nombres</a>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                            <dl id="f_menu_blog" class=" ">
-                                <dt>
-                                    <a href="/blog">Blog</a>
-                                </dt>
-                                <dd>
-                                    <ul>
-                                        <li>
-                                            <a href="/blog" title="Accéder au blog">Blog Le Conjugueur</a>
-                                        </li>
-                                        <li>
-                                            <a href="/video-youtube.php" title="Chaîne Youtube">Vidéo</a>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                            <dl id="f_menu_synonyme" class=" ">
-                                <dt>
-                                    <a href="/synonyme" title="Trouver un synonyme">Synonymes</a>
-                                </dt>
-                                <dd>
-                                    <ul>
-                                        <li>
-                                            <a href="/synonyme">Rechercher un synonyme</a>
-                                        </li>
-                                        <li>
-                                            <a href="/traduction" title="Traduction d'un texte">Traduire un texte</a>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+        
         <div id="header_mobile">
             <div id="f_headerm" class="noJS actu">
                 <div class="headerPrimary">
@@ -1384,25 +1030,27 @@
                         </div>
                     </div>
                 </div>
-                <p class="centre">
-                    <a href="/conjugaison" title="Conjuguer un verbe">Conjugaison</a>
-                     | 
-                    <a href="/regle" title="Règle de conjugaison et de grammaire">Règles</a>
-                     | 
-                    <a href="/exercice" title="Exercice de conjugaison">Exercices</a>
-                     | 
-                    <a href="/orthographe" title="Vérifier l'orthographe d'un mot">Orthographe</a>
-                     | 
-                    <a href="https://forum.leconjugueur.lefigaro.fr" title="Le forum de la conjugaison">Forum</a>
-                     | 
-                    <a href="/blog" title="Blog">Blog</a>
-                     | 
-                    <a href="/frnombre.php" title="Ecrire un nombre">Nombres</a>
-                     | 
-                    <a href="/video-youtube.php">Vidéo</a>
-                </p>
             </div>
         </div>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg bg-secondary">
+            <div class="container-fluid">
+                <button class="navbar-toggler ms-auto bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon bg-white"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link text-white" href="/conjugaison"><i class="fa-solid fa-home"></i>&nbsp;Conjugaison</a> 
+                        <a class="nav-link text-white" href="/regle"><i class="fa-solid fa-scale-balanced"></i>&nbsp;Règles</a>
+                        <a class="nav-link text-white" href="/exercice"><i class="fa-regular fa-dumbbell"></i>&nbsp;Exercices</a>
+                        <a class="nav-link text-white" href="/frorthographe.php"><i class="fa-solid fa-text"></i>&nbsp;Orthographe</a>                        
+                        <a class="nav-link text-white" href="https://forum.leconjugueur.lefigaro.fr"><i class="fa-brands fa-forumbee"></i>&nbsp;Forum</a>
+                        <a class="nav-link text-white" href="https://leconjugueur.lefigaro.fr/blog"><i class="fa-solid fa-blog"></i>&nbsp;Blog</a>
+                        <a class="nav-link text-white" href="/nombre.php"><i class="fa-light fa-input-numeric"></i>&nbsp;Nombres</a>                     
+                </div>
+            </div>         
+        </nav>      
     </header>
 
     <!-- Pub megaban -->
@@ -1525,9 +1173,13 @@
         <div class="col-6 col-md">
           <h5>La conjugaison</h5>
           <ul class="list-unstyled text-small">
-            <li><i class="fa-solid fa-house"></i>&nbsp;<a class="link-secondary" href="/index.html">Accueil</a></li>
-            <li><i class="fa-solid fa-circle-play"></i>&nbsp;<a class="link-secondary" href="/game.html">Jouer</a></li>
-            <li><i class="fa-solid fa-circle-info"></i>&nbsp;<a class="link-secondary" href="aide.html">Aide</a></li>
+            <li><i class="fa-solid fa-house"></i>&nbsp;<a class="link-secondary" href="/">Accueil</a></li>
+            <li><i class="fa-solid fa-scale-balanced"></i>&nbsp;<a class="link-secondary" href="/regle">Règles</a></li>
+            <li><i class="fa-solid fa-clone"></i>&nbsp;<a class="link-secondary" href="/frhomophones.php">Homophones</a></li>
+            <li><i class="fa-regular fa-gopuram"></i>&nbsp;<a class="link-secondary" href="/frmodele.php">Modèles de verbes</a></li>
+            <li><i class="fa-solid fa-circle-play"></i>&nbsp;<a class="link-secondary" href="/frpiege.php">Verbes particuliers</a></li>
+            <li><i class="fa-regular fa-treasure-chest"></i>&nbsp;<a class="link-secondary" href="/regle_de_grammaire.php">Grammaire</a></li>
+            <li><i class="fa-regular fa-video"></i>&nbsp;<a class="link-secondary" href="/video-youtube.php">Vidéo</a></li>            
           </ul>
         </div>                 
         <div class="col-6 col-md">
@@ -1543,13 +1195,13 @@
           </ul>
         </div>
         <div class="col-6 col-md">
-          <h5>Autres langues <i class="fa-regular fa-language"></i></h5>
+          <h5><i class="fa-regular fa-language"></i> Autres langues</h5>
           <ul class="list-unstyled text-small">
-            <li><a class="link-secondary" href="https://www.elconjugador.com" title="Conjuguer un verbe en espagnol">Conjugaison espagnole</a></li>
-            <li><a class="link-secondary" href="https://www.theconjugator.com" title="Conjuguer un verbe en anglais">Conjugaison anglaise</a></li>
-            <li><a class="link-secondary" href="https://www.derkonjugator.com" title="Conjuguer un verbe en allemand">Conjugaison allemande</a></li>
-            <li><a class="link-secondary" href="https://www.ilconiugatore.com" title="Conjuguer un verbe en italien">Conjugaison italienne</a></li>
-            <li><a class="link-secondary" href="https://www.oconjugador.com" title="Conjuguer un verbe en portugais">Conjugaison portugaise</a></li>
+            <li><a class="link-secondary" href="https://www.elconjugador.com" title="Conjuguer un verbe en espagnol">espagnol</a></li>
+            <li><a class="link-secondary" href="https://www.theconjugator.com" title="Conjuguer un verbe en anglais">anglais</a></li>
+            <li><a class="link-secondary" href="https://www.derkonjugator.com" title="Conjuguer un verbe en allemand">allemand</a></li>
+            <li><a class="link-secondary" href="https://www.ilconiugatore.com" title="Conjuguer un verbe en italien">italien</a></li>
+            <li><a class="link-secondary" href="https://www.oconjugador.com" title="Conjuguer un verbe en portugais">portugais</a></li>
           </ul>
         </div>        
       </div>

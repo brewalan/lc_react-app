@@ -72,7 +72,7 @@ class ButtonList extends React.Component {
       if (info.caracteristique.existe) {      
         return (
           <React.Fragment>
-            <div className="pb-2 hstack gap-2">
+            <div className="pb-2 hstack gap-2 align-top">
 
               <ButtonGenre
                 vbConjug={info}
@@ -81,7 +81,7 @@ class ButtonList extends React.Component {
           
               <div className='vr'></div>
 
-              <div className="pl-2">
+              <div className="pl-2 align-top">
                 <ButtonQuestionbNegation
                   vbConjug={info} 
                   onRequestQuestion={this.handleRequestQuestion}

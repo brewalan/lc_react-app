@@ -25,7 +25,7 @@ class ButtonGenre extends React.Component {
         const info = this.props.vbConjug;
         return (
         <React.Fragment>
-            <div className="btn-group" 
+            <div className="btn-group align-top" 
             role="group" 
             aria-label="Choix du genre"
             >
