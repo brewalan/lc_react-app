@@ -32,14 +32,17 @@ class NuageVerbeReact extends React.Component {
       )}
     );
 
-    return (
-      <React.Fragment>
-        <ModeBox mode={conjText.nuageDeVerbe} />
-        <div className="text-center pb-2">
-          {listVerbeNuage}
-        </div>
-      </React.Fragment>
-    );
+    /* check if display */
+    if (this.props.nuageDisplay) {
+      return (
+        <React.Fragment>
+          <ModeBox mode={conjText.nuageDeVerbe} />
+          <div className="text-center pb-2">
+            {listVerbeNuage}
+          </div>
+        </React.Fragment>
+      );
+    }
   }
 }
 

@@ -12,10 +12,6 @@ import ButtonList from './bouton/ButtonList';
 import LogicielBox from './bouton/LogicielBox';
 
 
-
-
-
-
 /* Class to control the input of a verb */
 class VerbeInput extends React.Component {
     constructor(props) {
@@ -212,6 +208,10 @@ class VerbeInput extends React.Component {
       - conjugaison
       - nuage verbe */
       render() {
+        /* place le nuage de verbe soit à droite soit au milieu de la page si pas de conjugaison */
+        let nuageAside = this.state.vbConjug.caracteristique.existe;
+        let nuageInside = (!nuageAside);
+        /* commence l'affichage de la page */
         return (
             <React.Fragment>
             <div className="row py-2">
@@ -258,6 +258,10 @@ class VerbeInput extends React.Component {
                   existe={this.state.vbConjug.caracteristique.existe} 
                   onVerbeChange={this.handleVerbePropose} />
                 <ConjugaisonVerbe vbConjug={this.state.vbConjug} />
+                <NuageVerbeReact 
+                  onVerbeChange={this.handleVerbePropose}
+                  nuageValue={this.state.nuageValue}  
+                  nuageDisplay={nuageInside} />
               </section>
               <aside className="col-12 col-md-4 col-lg-3 bg-light">
                 <HistoryVerbeReact
@@ -266,7 +270,8 @@ class VerbeInput extends React.Component {
                   historyValue={this.state.historyVerbe}  />
                 <NuageVerbeReact 
                   onVerbeChange={this.handleVerbePropose}
-                  nuageValue={this.state.nuageValue}  />
+                  nuageValue={this.state.nuageValue}  
+                  nuageDisplay={nuageAside} />
                 <LogicielBox />
               </aside>
             </div>
